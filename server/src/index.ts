@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 // import cors from "cors";
 import userRouter from "../routes/userRouter";
 import mongoose from "mongoose";
+import movieRouter from "../routes/movieRouter";
 
 const app = express();
 dotenv.config();
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 8080;
 
 //routes:
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/movies", movieRouter);
 
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING)

@@ -4,14 +4,22 @@ import {generateToken} from '../utils'
 
 
  const signUp = async (req, res) =>{
-    const {name, email, password} = req.body;
-    
-    const newUser = new User({
-        name: name,
-        email: email,
-        password: bcrypt.hashSync(password),
-    });
+    const { email, password} = req.body;
 
+    if(User.findOne({ email: email })){
+      res.status(409).send({message: "User already exists"});
+      return;
+    }
+
+    const saltRounds = 10; // You can adjust this value as needed
+    const salt = bcrypt.genSaltSync(saltRounds);
+
+    const newUser = new User({
+      name: createName(email),
+      email: email,
+      password: bcrypt.hashSync(password, salt),
+    });
+    
     const user = await newUser.save();
 
     // we dont need the password!
@@ -64,6 +72,15 @@ import {generateToken} from '../utils'
   const getAllUsers = async(req, res) => {
     const users = await User.find();
     res.send(users);
+  }
+
+  const createName = (email: string) : string => {
+    const atIndex = email.indexOf('@');
+    if (atIndex !== -1) {
+      return email.substring(0, atIndex);
+    } else {
+      throw new Error('Invalid email format');
+    }
   }
 
   export {signUp, signIn, getUserById, getAllUsers}
