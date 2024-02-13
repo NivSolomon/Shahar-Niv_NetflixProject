@@ -5,6 +5,7 @@ enum Genre {
     DETECTIVE = 'Detective',
     HORROR = 'Horror',
     ANIMATION = 'Animation',
+    CRIME_DRAMA = 'Crime Drama'
   }
 
 export default Genre;

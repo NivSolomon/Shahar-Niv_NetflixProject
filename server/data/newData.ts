@@ -1,5 +1,13 @@
-[
-    // Movies:
+import bcrypt from 'bcrypt'
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // You can adjust this value as needed
+const password = "1234";
+const hashedPassword = bcrypt.hashSync(password, saltRounds);
+
+const data = {
+  contents: [
+      // Movies:
     {
       "title": "Inception",
       "description": "Inception is a 2010 science fiction action film written, co-produced, and directed by Christopher Nolan, and co-produced by Emma Thomas. The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious of his targets.",
@@ -8,7 +16,7 @@
       "imgThumb": "https://collider.com/wp-content/uploads/inception_movie_poster_banner_03.jpg",
       "imgVertical": "https://m.media-amazon.com/images/M/MV5BZGFjOTRiYjgtYjEzMS00ZjQ2LTkzY2YtOGQ0NDI2NTVjOGFmXkEyXkFqcGdeQXVyNDQ5MDYzMTk@._V1_.jpg",
       "trailerSource": "https://youtu.be/YoHD9XEInc0",
-      "movieSource": "https://youtu.be/YoHD9XEInc0",
+      "contentSource": "https://youtu.be/YoHD9XEInc0",
       "duration": "2 hours 18 min",
       "year": "2010",
       "ageLimit": 15,
@@ -26,7 +34,7 @@
       "imgThumb": "https://preview.redd.it/vedjoch1jv651.jpg?width=640&crop=smart&auto=webp&s=28a95089e9b8352cc163a047fd6f8f6c099cf317",
       "imgVertical": "https://www.hcinema.org.il/wp-content/uploads/2022/03/the-dark-knight-poster-1.jpg",
       "trailerSource": "https://youtu.be/EXeTwQWrcwY",
-      "movieSource": "https://youtu.be/EXeTwQWrcwY",
+      "contentSource": "https://youtu.be/EXeTwQWrcwY",
       "duration": "2 hours 32 min",
       "year": "2008",
       "ageLimit": 15,
@@ -44,7 +52,7 @@
       "imgThumb": "https://variety.com/wp-content/uploads/2013/07/the-revenant-movie-reivew-2.jpg",
       "imgVertical": "https://m.media-amazon.com/images/I/A1BjliXNDPL.jpg",
       "trailerSource": "https://youtu.be/LoebZZ8K5N0",
-      "movieSource": "https://youtu.be/LoebZZ8K5N0",
+      "contentSource": "https://youtu.be/LoebZZ8K5N0",
       "duration": "1 hour 15 min",
       "year": "2015",
       "ageLimit": 15,
@@ -62,15 +70,14 @@
       "imgThumb": "https://ichef.bbci.co.uk/images/ic/640x360/p07rv1xs.jpg",
       "imgVertical": "https://m.media-amazon.com/images/I/71SH1ZPPIZL.jpg",
       "trailerSource": "https://youtu.be/F_UxLEqd074",
-      "movieSource": "https://youtu.be/F_UxLEqd074",
+      "contentSource": "https://youtu.be/F_UxLEqd074",
       "duration": "1 hour 12 min",
       "year": "2007",
       "ageLimit": 18,
       "genre": "Horror",
       "isSeries": false,
       "listNames": [
-        "Top picks for Movie",
-        "Horror"
+        "Top picks for Movie"
       ]
     },
     {
@@ -81,15 +88,14 @@
       "imgThumb": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/games/switch/f/friday-the-13th-the-game-ultimate-slasher-edition-switch/hero",
       "imgVertical": "https://cdn.europosters.eu/image/1300/art-photo/friday-the-13th-blockbuster-i112337.jpg",
       "trailerSource": "https://youtu.be/aDrOvFtzyPQ",
-      "movieSource": "https://youtu.be/aDrOvFtzyPQ",
+      "contentSource": "https://youtu.be/aDrOvFtzyPQ",
       "duration": "1 hour 35 min",
       "year": "1980",
       "ageLimit": 18,
       "genre": "Horror",
       "isSeries": false,
       "listNames": [
-        "Top picks for Movie",
-        "Horror"
+        "Top picks for Movie"
       ]
     },
     {
@@ -100,15 +106,14 @@
       "imgThumb": "https://m.media-amazon.com/images/M/MV5BOTFlZTA4YjUtYzY3Zi00Mzc2LTllNzAtYjI2ZWNiMGZkZjE2XkEyXkFqcGdeQW1yb3NzZXI@._V1_QL75_UY281_CR86,0,500,281_.jpg",
       "imgVertical": "https://cdn.marvel.com/content/2x/MilesPoster.jpg",
       "trailerSource": "https://youtu.be/g4Hbz2jLxvQ",
-      "movieSource": "https://youtu.be/g4Hbz2jLxvQ",
+      "contentSource": "https://youtu.be/g4Hbz2jLxvQ",
       "duration": "1 hour 57 min",
       "year": "2018",
       "ageLimit": 13,
       "genre": "Animation",
       "isSeries": false,
       "listNames": [
-        "Top picks for Movie",
-        "Animation"
+        "Top picks for Movie"
       ]
     },
     {
@@ -118,11 +123,11 @@
         "imgTitle": "https://dnm.nflximg.net/api/v6/S4oi7EPZbv2UEPaukW54OORa0S8/AAAABbPGVhhNiv-uNFQF4_4epf7cHyQ1ZTByPKz2ESVU0jcMoxjjyaT1veVvour43ALVhE9yoVJ8MdF5M14HhNNTfeBnGkn9j5QKQag.png?r=204",
         "imgThumb": "https://occ-0-769-590.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZKJpdcSuvqwGBxBJNKVRze0JWHe9phJW6L1xaiqvLePPRKhRis-7FHr69URHZIYXqUVus0HIoz_3fLZPQr3VVqGGzRNlDoNkPwp.jpg?r=72d",
         "imgVertical": "https://m.media-amazon.com/images/M/MV5BOTlmNGE0ZGMtMzdkMC00MjQyLWI1ZjgtZTIxODAyNWJlZDFlXkEyXkFqcGdeQXVyNTQ4ODM2NjM@._V1_FMjpg_UX1000_.jpg",
-        "trailer": "https://youtu.be/J2uW5ehHqjc",
-        "movie": "https://youtu.be/J2uW5ehHqjc",
+        "trailerSource": "https://youtu.be/J2uW5ehHqjc",
+        "contentSource": "https://youtu.be/J2uW5ehHqjc",
         "duration": "2 hours 10 min",
         "year": "2019",
-        "limit": "15",
+        "ageLimit": 15,
         "genre": "Action",
         "isSeries": false,
         "listNames": [
@@ -137,31 +142,30 @@
         "imgTitle": "https://i.pinimg.com/originals/9e/b2/32/9eb2327de3d6f3a73add59e23ebd0d7f.png",
         "imgThumb": "https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/03/brave-movie.jpg",
         "imgVertical": "https://m.media-amazon.com/images/M/MV5BMzgwODk3ODA1NF5BMl5BanBnXkFtZTcwNjU3NjQ0Nw@@._V1_.jpg",
-        "movie": "https://youtu.be/TEHWDA_6e3M",
-        "trailer": "https://youtu.be/TEHWDA_6e3M",
+        "contentSource": "https://youtu.be/TEHWDA_6e3M",
+        "trailerSource": "https://youtu.be/TEHWDA_6e3M",
         "duration": "1 hour 40 min",
         "year": "2012",
-        "limit": "8",
+        "ageLimit": 8,
         "genre": "Animation",
         "isSeries": false,
         "listNames": [
           "Top picks for Movie",
-          "Kid-Friendly Movies",
-          "Animation"
+          "Kid-Friendly Movies"
         ]
       },
       {
         "title": "Fight Club",
         "description": "Fight Club is a 1999 American film directed by David Fincher and starring Edward Norton, Brad Pitt, and Helena Bonham Carter. It follows an unnamed narrator who forms an underground fight club with Tyler Durden, a soap maker. The film's supporting cast includes Meat Loaf, Jared Leto, and Eion Bailey. The film's plot is based on the 1996 novel of the same name by Chuck Palahniuk.",
-        "img": "https://media.newyorker.com/photos/5dbafcc91b4a6700085a7a9b/master/w_2560%2Cc_limit/Baker-FightClub.jpg",
+        "img": "https://media.newyorker.com/photos/5dbafcc91b4a6700085a7a9b/master/w_2560%2Cc_ageLimit/Baker-FightClub.jpg",
         "imgThumb": "https://www.slantmagazine.com/wp-content/uploads/2009/11/fightclub.jpg",
         "imgVertical": "https://i.etsystatic.com/18242346/r/il/c9908e/2412674268/il_fullxfull.2412674268_1sgm.jpg",
         "imgTitle": "https://www.pngmart.com/files/22/Fight-Club-PNG-HD.png",
-        "trailer": "https://youtu.be/O1nDozs-LxI",
-        "movie": "https://youtu.be/O1nDozs-LxI",
+        "trailerSource": "https://youtu.be/O1nDozs-LxI",
+        "contentSource": "https://youtu.be/O1nDozs-LxI",
         "duration": "2 hour 16 min",
         "year": "1999",
-        "limit": "18",
+        "ageLimit": 18,
         "genre": "Detective",
         "isSeries": false,
         "listNames": [
@@ -172,20 +176,19 @@
       {
         "title": "Scott Pilgrim vs. the World",
         "description": "Scott Pilgrim vs. the World is a 2010 action comedy film co-written, produced, and directed by Edgar Wright, based on the graphic novel series Scott Pilgrim by Bryan Lee O'Malley. It stars Michael Cera as Scott Pilgrim, a slacker musician who must win a competition to get a record deal and battle the seven evil exes of his newest girlfriend Ramona Flowers, played by Mary Elizabeth Winstead.",
-        "img": "https://media.vanityfair.com/photos/5f298aa4ad09aa418d20429f/master/w_2560%2Cc_limit/shutterstock_editorial_5885820am.jpg",
+        "img": "https://media.vanityfair.com/photos/5f298aa4ad09aa418d20429f/master/w_2560%2Cc_ageLimit/shutterstock_editorial_5885820am.jpg",
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Scott_Pilgrim_vs_the_World_Wordmark.svg/1280px-Scott_Pilgrim_vs_the_World_Wordmark.svg.png",
         "imgThumb": "https://i.ytimg.com/vi/7wd5KEaOtm4/maxresdefault.jpg",
         "imgVertical": "https://static.metacritic.com/images/products/movies/3/524cfbd8dd5a2c4a96d99d80d70716fc.jpg",
-        "trailer": "https://youtu.be/7wd5KEaOtm4",
-        "movie": "https://youtu.be/7wd5KEaOtm4",
+        "trailerSource": "https://youtu.be/7wd5KEaOtm4",
+        "contentSource": "https://youtu.be/7wd5KEaOtm4",
         "duration": "1 hour 52 min",
         "year": "2010",
-        "limit": "13",
+        "ageLimit": 13,
         "genre": "Comedy",
         "isSeries": false,
         "listNames": [
-          "Top picks for Movie",
-          "Comedy"
+          "Top picks for Movie"
         ]
       },
       {
@@ -195,17 +198,16 @@
         "imgTitle": "https://pngimg.com/d/shrek_PNG24.png",
         "imgThumb": "https://img2.hulu.com/user/v3/artwork/36c01be2-e036-46d9-9da2-522bfd12b54f?base_image_bucket_name=image_manager&base_image=42eab101-f1c7-4661-9c4e-b6d2a2dfea41&region=US&format=jpeg&size=952x536",
         "imgVertical": "https://www.themoviedb.org/t/p/w500/iB64vpL3dIObOtMZgX3RqdVdQDc.jpg",
-        "trailer": "https://youtu.be/CwXOrWvPBPk",
-        "movie": "https://youtu.be/CwXOrWvPBPk",
+        "trailerSource": "https://youtu.be/CwXOrWvPBPk",
+        "contentSource": "https://youtu.be/CwXOrWvPBPk",
         "duration": "1 hour 32 min",
         "year": "2001",
-        "limit": "13",
+        "ageLimit": 13,
         "genre": "Animation",
         "isSeries": false,
         "listNames": [
           "Top picks for Movie",
-          "Kid-Friendly Movies",
-          "Animation"
+          "Kid-Friendly Movies"
         ]
       },
       {
@@ -215,16 +217,15 @@
         "imgTitle": "https://images.fanart.tv/fanart/priest-51ded5c2ef023.png",
         "imgThumb": "https://m.media-amazon.com/images/S/pv-target-images/401ca3e58039de9128b37dabf50ded0f1cd2b2c626e116f8d47d235abdf617b9._UR1920,1080_.jpg",
         "imgVertical": "https://images.moviesanywhere.com/4605e276d787283db68b15bb094dafc5/6168c408-c8ef-4661-9829-3193386f2b59.jpg",
-        "trailer": "https://youtu.be/-VNczhWD2ao",
-        "movie": "https://youtu.be/-VNczhWD2ao",
+        "trailerSource": "https://youtu.be/-VNczhWD2ao",
+        "contentSource": "https://youtu.be/-VNczhWD2ao",
         "duration": "1 hour 27 min",
         "year": "2011",
-        "limit": "18",
+        "ageLimit": 18,
         "genre": "Horror",
         "isSeries": false,
         "listNames": [
-          "Top picks for Movie",
-          "Horror"
+          "Top picks for Movie"
         ]
       },
       {
@@ -234,16 +235,15 @@
         "imgTitle": "https://www.pngmart.com/files/15/Avatar-Logo-Transparent-PNG.png",
         "imgThumb": "https://c4.wallpaperflare.com/wallpaper/810/33/235/movies-avatar-1680x1050-entertainment-movies-hd-art-wallpaper-preview.jpg",
         "imgVertical": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_.jpg",
-        "trailer": "https://youtu.be/CM79GTEm2ps",
-        "movie": "https://youtu.be/CM79GTEm2ps",
+        "trailerSource": "https://youtu.be/CM79GTEm2ps",
+        "contentSource": "https://youtu.be/CM79GTEm2ps",
         "duration": "2 hours 42 min",
         "year": "2009",
-        "limit": "12",
+        "ageLimit": 12,
         "genre": "Fantasy",
         "isSeries": false,
         "listNames": [
-          "Top picks for Movie",
-          "Fantasy"
+          "Top picks for Movie"
         ]
       },
       {
@@ -253,16 +253,15 @@
         "imgTitle": "https://www.freepnglogos.com/uploads/lord-of-the-rings-png-logo/lord-of-the-rings-png-title-logo-1.png",
         "imgThumb": "https://media.citizen.co.za/wp-content/uploads/2023/02/new-lord-of-the-rings-films-announced.jpg",
         "imgVertical": "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
-        "trailer": "https://youtu.be/aStYWD25fAQ",
-        "movie": "https://youtu.be/aStYWD25fAQ",
+        "trailerSource": "https://youtu.be/aStYWD25fAQ",
+        "contentSource": "https://youtu.be/aStYWD25fAQ",
         "duration": "2 hours 58 min",
         "year": "2001",
-        "limit": "13",
+        "ageLimit": 13,
         "genre": "Fantasy",
         "isSeries": false,
         "listNames": [
-          "Top picks for Movie",
-          "Fantasy"
+          "Top picks for Movie"
         ]
       },
       {
@@ -272,16 +271,15 @@
         "imgTitle": "https://i.ibb.co/qRs0ZsR/440-4406326-harry-potter-philosophers-stone-logo-hd-png-download-removebg-preview.png",
         "imgThumb": "https://images8.alphacoders.com/113/1130049.jpg",
         "imgVertical": "https://wallpapercave.com/wp/wp4879829.jpg",
-        "trailer": "https://youtu.be/mNgwNXKBEW0",
-        "movie": "https://youtu.be/mNgwNXKBEW0",
+        "trailerSource": "https://youtu.be/mNgwNXKBEW0",
+        "contentSource": "https://youtu.be/mNgwNXKBEW0",
         "duration": "2 hours 32 min",
         "year": "2001",
-        "limit": "PG",
+        "ageLimit": 5,
         "genre": "Fantasy",
         "isSeries": false,
         "listNames": [
-          "Top picks for Movie",
-          "Fantasy"
+          "Top picks for Movie"
         ]
       },
         // Series
@@ -292,16 +290,15 @@
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/1200px-Rick_and_Morty.svg.png",
         "imgThumb": "https://thepopcornuniverse.in/wp-content/uploads/2021/09/Rick-Morty-Thumbnail.jpg",
         "imgVertical": "https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_.jpg",
-        "trailer": "https://youtu.be/jerFRSQW9g8",
-        "movie": "https://youtu.be/jerFRSQW9g8",
+        "trailerSource": "https://youtu.be/jerFRSQW9g8",
+        "contentSource": "https://youtu.be/jerFRSQW9g8",
         "duration": "22 min",
         "year": "2013",
-        "limit": "15",
+        "ageLimit": 15,
         "genre": "Animation",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Animation"
+          "Top picks for Series"
         ]
       },
       {
@@ -311,16 +308,15 @@
         "imgTitle": "https://assets.fanart.tv/fanart/tv/387115/hdtvlogo/the-queens-gambit-5f909918e4d78.png",
         "imgThumb": "https://www.jesuithighschool.org/sites/main/files/imagecache/lightbox/main-images/sl__queens_gambit__bradenacosta24.jpg",
         "imgVertical": "https://1.bp.blogspot.com/-DB4YRE95A9I/YZnN1oTXSDI/AAAAAAAAGW4/Zd2TqAPG51oGmEBgqkrZBqa---Fb0YGuQCNcBGAsYHQ/s1536/Gambito-de-Dama.jpg",
-        "trailer": "https://youtu.be/oZn3qSgmLqI",
-        "movie": "https://youtu.be/oZn3qSgmLqI",
+        "trailerSource": "https://youtu.be/oZn3qSgmLqI",
+        "contentSource": "https://youtu.be/oZn3qSgmLqI",
         "duration": "50 min",
         "year": "2020",
-        "limit": "18",
+        "ageLimit": 18,
         "genre": "Action",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Action"
+          "Top picks for Series"
         ]
       },
       {
@@ -330,16 +326,15 @@
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Lie_to_Me.svg/1200px-Lie_to_Me.svg.png",
         "imgThumb": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/7F8521F95782E1E20034600A6152387CDBDA73F28773503C71336081780CD589/scale?width=1200&aspectRatio=1.78&format=jpeg",
         "imgVertical": "https://m.media-amazon.com/images/I/81rE-kEY-ZL._AC_UF1000,1000_QL80_.jpg",
-        "trailer": "https://youtu.be/Kq6PiXEG9Eg",
-        "movie": "https://youtu.be/Kq6PiXEG9Eg",
+        "trailerSource": "https://youtu.be/Kq6PiXEG9Eg",
+        "contentSource": "https://youtu.be/Kq6PiXEG9Eg",
         "duration": "42 min",
         "year": "2009-2011",
-        "limit": "16",
+        "ageLimit": 16,
         "genre": "Crime Drama",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Crime Drama"
+          "Top picks for Series"
         ]
       },
       {
@@ -349,16 +344,15 @@
         "imgTitle": "https://assets.fanart.tv/fanart/movies/21159/hdmovielogo/the-last-man-on-earth-5474a0fc40b53.png",
         "imgThumb": "https://ntvb.tmsimg.com/assets/p10775022_b_h10_aa.jpg?w=1280&h=720",
         "imgVertical": "https://flxt.tmsimg.com/assets/p10775022_b_v8_aa.jpg",
-        "trailer": "https://youtu.be/NUZu331xTFs",
-        "movie": "https://youtu.be/NUZu331xTFs",
+        "trailerSource": "https://youtu.be/NUZu331xTFs",
+        "contentSource": "https://youtu.be/NUZu331xTFs",
         "duration": "30 min",
         "year": "2015 - 2018",
-        "limit": "16",
+        "ageLimit": 16,
         "genre": "Comedy",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Comedy"
+          "Top picks for Series"
         ]
       },
       {
@@ -368,16 +362,15 @@
         "imgTitle": "https://cdn.shopify.com/s/files/1/0259/7398/1235/collections/Death_Note_Logo.png?v=1587232436",
         "imgThumb": "https://occ-0-3933-41.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABWroW6c_lJwQ0ke2cFu_mgNM_01vUETqAt1cne4sjap77CYXvZMPTW2rP9-La6yEz-5bzHu_nSm-4X2Bao79lhocNgJA0l2lfI75BhWTaq1JOQVlGx04pGjd.jpg?r=dac",
         "imgVertical": "https://m.media-amazon.com/images/M/MV5BNjRiNmNjMmMtN2U2Yi00ODgxLTk3OTMtMmI1MTI1NjYyZTEzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg",
-        "trailer": "https://youtu.be/NlJZ-YgAt-c",
-        "movie": "https://youtu.be/NlJZ-YgAt-c",
+        "trailerSource": "https://youtu.be/NlJZ-YgAt-c",
+        "contentSource": "https://youtu.be/NlJZ-YgAt-c",
         "duration": "2 hours 37 min",
         "year": "2006",
-        "limit": "16",
+        "ageLimit": 16,
         "genre": "Animation",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Animation"
+          "Top picks for Series"
         ]
       },
       {
@@ -387,16 +380,15 @@
         "imgTitle": "https://logos-world.net/wp-content/uploads/2021/11/VIkings-Emblem.png",
         "imgThumb": "https://variety.com/wp-content/uploads/2014/02/vikings-tv-review.jpg",
         "imgVertical": "https://image.tmdb.org/t/p/original/w1SiyVcFQIB1YbeKfT7KBnVMItO.jpg",
-        "trailer": "https://youtu.be/9GgxinPwAGc",
-        "movie": "https://youtu.be/9GgxinPwAGc",
+        "trailerSource": "https://youtu.be/9GgxinPwAGc",
+        "contentSource": "https://youtu.be/9GgxinPwAGc",
         "duration": "45 min",
         "year": "2013",
-        "limit": "18",
+        "ageLimit": 18,
         "genre": "Detective",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Detective"
+          "Top picks for Series"
         ]
       },
       {
@@ -406,16 +398,15 @@
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Lucifer_tv_logo.svg/1280px-Lucifer_tv_logo.svg.png",
         "imgThumb": "https://e3d6fgx2ndy.exactdn.com/wp-content/uploads/2021/09/lucifer-series-6-poster-1628105867-e1632100924788.jpg?strip=all&lossy=1&ssl=1",
         "imgVertical": "https://image.tmdb.org/t/p/original/e6FQvm5jycG9xx1ZWowIYBc3Shn.jpg",
-        "trailer": "https://youtu.be/X4bF_quwNtw",
-        "movie": "https://youtu.be/X4bF_quwNtw",
+        "trailerSource": "https://youtu.be/X4bF_quwNtw",
+        "contentSource": "https://youtu.be/X4bF_quwNtw",
         "duration": "45 min",
         "year": "2016",
-        "limit": "15",
+        "ageLimit": 15,
         "genre": "Comedy",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Comedy"
+          "Top picks for Series"
         ]
       },
       {
@@ -425,16 +416,15 @@
         "imgTitle": "https://uxuihero.com/wp-content/uploads/2019/03/Titles.png",
         "imgThumb": "https://www.whats-on-netflix.com/wp-content/uploads/2022/08/love-death-and-robots-renewed-for-season-4-netflix.webp",
         "imgVertical": "https://thefincheranalyst.files.wordpress.com/2022/05/love-death-robots-s3-main-noborder-vertical-27x40-rgb-pre-w5.1.webp",
-        "trailer": "https://youtu.be/wUFwunMKa4E",
-        "movie": "https://youtu.be/wUFwunMKa4E",
+        "trailerSource": "https://youtu.be/wUFwunMKa4E",
+        "contentSource": "https://youtu.be/wUFwunMKa4E",
         "duration": "40 min",
         "year": "2019",
-        "limit": "18",
+        "ageLimit": 18,
         "genre": "Animation",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Animation"
+          "Top picks for Series"
         ]
       },
       {
@@ -444,16 +434,15 @@
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/4/4b/House_of_the_dragon_logo.png",
         "imgThumb": "https://ntvb.tmsimg.com/assets/p19657355_b_h8_af.jpg?w=960&h=540",
         "imgVertical": "https://img.posterstore.com/zoom/wb0035-8houseofthedragon-rhaenyratargaryen50x70.jpg",
-        "trailer": "https://youtu.be/DotnJ7tTA34",
-        "movie": "https://youtu.be/DotnJ7tTA34",
+        "trailerSource": "https://youtu.be/DotnJ7tTA34",
+        "contentSource": "https://youtu.be/DotnJ7tTA34",
         "duration": "1 hour",
         "year": "2022",
-        "limit": "16",
+        "ageLimit": 16,
         "genre": "Fantasy",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Fantasy"
+          "Top picks for Series"
         ]
       },
       {
@@ -462,17 +451,16 @@
         "img": "https://www.whats-on-netflix.com/wp-content/uploads/2022/09/emily-in-paris-season-3-netflix-everything-we-know-so-far-jpg.webp",
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Emily_in_Paris_logo.svg/1200px-Emily_in_Paris_logo.svg.png",
         "imgVertical": "https://flxt.tmsimg.com/assets/p20738800_b_v13_ae.jpg",
-        "imgThumb": "https://media.newyorker.com/photos/5fab116f3f5e6c06f138f155/16:9/w_3600,h_2025,c_limit/Chayka-ambient-tv-1.jpg",
-        "trailer": "https://youtu.be/Xl3HY9yMEBI",
-        "movie": "https://youtu.be/Xl3HY9yMEBI",
+        "imgThumb": "https://media.newyorker.com/photos/5fab116f3f5e6c06f138f155/16:9/w_3600,h_2025,c_ageLimit/Chayka-ambient-tv-1.jpg",
+        "trailerSource": "https://youtu.be/Xl3HY9yMEBI",
+        "contentSource": "https://youtu.be/Xl3HY9yMEBI",
         "duration": "30 min",
         "year": "2020",
-        "limit": "14",
+        "ageLimit": 14,
         "genre": "Comedy",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Comedy"
+          "Top picks for Series"
         ]
       },
       {
@@ -482,16 +470,15 @@
         "imgTitle": "https://pbs.twimg.com/media/DdkXrGXW0AEK-cQ.png",
         "imgThumb": "https://image.tmdb.org/t/p/w320_and_h180_bestv2/irTDkbtPQ4aM9YQw1uEevzk5rSz.jpg",
         "imgVertical": "https://image.tmdb.org/t/p/original/jQmM0kRXf5yHD8y5exkLQttkHtX.jpg",
-        "trailer": "https://youtu.be/fJtoxieq40o",
-        "movie": "https://youtu.be/fJtoxieq40o",
+        "trailerSource": "https://youtu.be/fJtoxieq40o",
+        "contentSource": "https://youtu.be/fJtoxieq40o",
         "duration": "45 min",
         "year": "2005",
-        "limit": "13",
+        "ageLimit": 13,
         "genre": "Action",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Action"
+          "Top picks for Series"
         ]
       },
       {
@@ -501,16 +488,15 @@
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Game_of_Thrones.png",
         "imgThumb": "https://i.insider.com/5cad1c9ce031e8029732e822?width=1200&format=jpeg",
         "imgVertical": "https://images2.minutemediacdn.com/image/fetch/c_fill,g_auto,f_auto,h_2731,w_1889/https%3A%2F%2Fwinteriscoming.net%2Ffiles%2F2019%2F04%2FGOT-Aftermath.jpeg",
-        "trailer": "https://youtu.be/bjqEWgDVPe0",
-        "movie": "https://youtu.be/bjqEWgDVPe0",
+        "trailerSource": "https://youtu.be/bjqEWgDVPe0",
+        "contentSource": "https://youtu.be/bjqEWgDVPe0",
         "duration": "1 hour",
         "year": "2011",
-        "limit": "18",
+        "ageLimit": 18,
         "genre": "Fantasy",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Fantasy"
+          "Top picks for Series"
         ]
       },
       {
@@ -520,16 +506,15 @@
         "imgTitle": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Grimm_Logo.png/800px-Grimm_Logo.png",
         "imgThumb": "https://vargiskhan.com/log/wp-content/uploads/2019/01/grimm-series-review.jpg",
         "imgVertical": "https://m.media-amazon.com/images/M/MV5BMTkyODg2MzQwMV5BMl5BanBnXkFtZTgwNTA2MjE1MDI@._V1_FMjpg_UX1000_.jpg",
-        "trailer": "https://youtu.be/2-4xKNZ_gaA",
-        "movie": "https://youtu.be/2-4xKNZ_gaA",
+        "trailerSource": "https://youtu.be/2-4xKNZ_gaA",
+        "contentSource": "https://youtu.be/2-4xKNZ_gaA",
         "duration": "45 min",
         "year": "2007",
-        "limit": "13",
+        "ageLimit": 13,
         "genre": "Detective",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Detective"
+          "Top picks for Series"
         ]
       },
       {
@@ -539,17 +524,31 @@
         "imgTitle": "https://logos-world.net/wp-content/uploads/2020/05/Stranger-Things-Logo.png",
         "imgThumb": "https://occ.a.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABV5lteI3eHet1nPBQKC_uEChESjqQfYpRwMWLR0wULt52odnxQtG69JNFDj9N4maZWJWDFZyi2sc1YzZ8mKE4Ajmt7Btva1CnWagGbYXVMp3t4OETM4LwiD70dHu-qWUbBAesQ.jpg?r=c68",
         "imgVertical": "https://resizing.flixster.com/0xxuABVVuzJrUT130WFHKE-irEg=/ems.cHJkLWVtcy1hc3NldHMvdHZzZWFzb24vNzUyMTFhOTktZTU4Ni00ODkyLWJlYjQtZTgxYTllZmU2OGM0LmpwZw==",
-        "trailer": "https://youtu.be/b9EkMc79ZSU",
-        "movie": "https://youtu.be/b9EkMc79ZSU",
+        "trailerSource": "https://youtu.be/b9EkMc79ZSU",
+        "contentSource": "https://youtu.be/b9EkMc79ZSU",
         "duration": "1 hour",
         "year": "2016",
-        "limit": "16",
+        "ageLimit": 16,
         "genre": "Horror",
         "isSeries": true,
         "listNames": [
-          "Top picks for Series",
-          "Horror"
+          "Top picks for Series"
         ]
       }
-  ]
-  
+  ],
+  users: [
+    {
+      name: "Admin",
+      email: "admin@example.com",
+      password: hashedPassword,
+      myList: ["65cb4df6c12ccc1cb57f44b2", "65cb4df6c12ccc1cb57f44b4"],
+      _id: "64379be3274e949864ae7709",
+      __v: 0,
+      createdAt: "2023-04-13T06:06:27.929Z",
+      updatedAt: "2023-04-13T06:06:27.929Z",
+    },
+  ],
+}
+
+export default data;
+ 

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import Genre from "../Enums/Genre";
 import ListNames from "../Enums/ListNames";
 
-const movieSchema = new mongoose.Schema({
+const contentSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     img: { type: String, required: true },
@@ -10,7 +10,7 @@ const movieSchema = new mongoose.Schema({
     imgThumb: { type: String, required: true },
     imgVertical: { type: String, required: true },
     trailerSource: { type: String, required: true },
-    movieSource: { type: String, required: true },
+    contentSource: { type: String, required: true },
     duration: { type: String, required: true },
     year: { type: String, required: true },
     ageLimit: { type: Number, required: true },
@@ -19,5 +19,5 @@ const movieSchema = new mongoose.Schema({
     listNames: { type: [String], enum: Object.values(ListNames), required: true }
   });
 
-const Movie = mongoose.model("Movie", movieSchema);
-export default Movie;
+const Content = mongoose.model("Content", contentSchema);
+export default Content;
