@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     email:{type: String, required: true, unique: true},
     password:{type: String, required: true},
     myList: [{type: mongoose.Schema.Types.ObjectId,
-              ref:"content"}]
+              ref:"Content"}]
 }, {
     timestamps: true,
     versionKey: false,

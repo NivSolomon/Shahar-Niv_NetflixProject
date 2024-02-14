@@ -3,15 +3,16 @@ import Content from "../models/Content";
 import User from "../models/User";
 import { getUserById } from "./userController";
 
+// TODO:
 const getAllList = async (req, res) => {
-    const id = req.body.id;
+    const userId = req.body._id;
     try {
-        const user = await User.find({_id: id}).populate('myList');
+        const user = await User.findOne({_id: userId}).populate('myList');
         if (!user) {
             return res.status(404).send('User not found');
         }
-        const contentList = user.myList;
-        res.status(200).send(contentList);
+        const contentsList = user.myList;
+        res.status(200).send(contentsList);
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
