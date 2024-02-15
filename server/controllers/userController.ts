@@ -5,8 +5,8 @@ import {generateToken} from '../utils'
 
  const signUp = async (req, res) =>{
     const { email, password} = req.body;
-
-    if(User.findOne({ email: email })){
+    
+    if(await User.findOne({ email: email })){
       res.status(409).send({message: "User already exists"});
       return;
     }
