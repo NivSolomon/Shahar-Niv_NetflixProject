@@ -21,7 +21,7 @@ import {generateToken} from '../utils'
     });
     
     const user = await newUser.save();
-
+    console.log(user);
     // we dont need the password!
     res.send({
         _id: user._id,
@@ -33,8 +33,8 @@ import {generateToken} from '../utils'
 
  const signIn = async (req, res) =>{
     const {password: passwordFromWebsite, email} = req.body;
-
     const user = await User.findOne({email: email});
+    console.log(user);
     if(user){
         if(bcrypt.compareSync(passwordFromWebsite, user.password)){
             res.send({

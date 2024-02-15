@@ -1,14 +1,13 @@
 import axios from 'axios'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 const SignIn = () => {
 
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
-    const VerifyPasswordRef = useRef<HTMLInputElement>(null)
 
     const onSubmitHandler = async() => {
-        if(passwordRef.current?.value === VerifyPasswordRef.current?.value) {
             try{
             const { data } = await axios.post('http://localhost:8080/api/v1/users/signin', {
                 email: emailRef.current?.value,
@@ -23,17 +22,17 @@ const SignIn = () => {
                 alert('An error occurred');
             }
         }
-        }
     }
 
   return (
-    <div>
-     <h1>Sign In:</h1>
-     <label>Email: <input ref={emailRef} type='email'></input></label><br/>
-     <label>Password: <input ref={passwordRef} type='password'></input></label><br/> 
-     <label>Verify Password: <input ref={VerifyPasswordRef} type='password'></input></label><br/>
+    <div className='card'>
+     <h1 className='signInTitle'>Sign In:</h1>
+<input ref={emailRef} type='email' placeholder='Email'></input><br/>
+<input ref={passwordRef} type='password' placeholder='Password'></input><br/> 
 
-     <button type='submit' onClick={()=> onSubmitHandler()}>Submit</button>
+     <br/><button className='loginBtn' type='submit' onClick={()=> onSubmitHandler()}>Login</button>
+     
+     <h3><span className='firstTimeUsing'>First time using Netflix?</span><Link className='link' to={'/signup'}>Create an account</Link></h3>
     </div>
 
   )
