@@ -34,11 +34,15 @@ if(currentStep === 'password') {
 
   return (
     <div>
-     <div>
-      <h1>Sign Up:</h1>
-      {currentStep === "email" && <input onChange={(e) => setUserInfo({...userInfo, email: e.target.value})} type='email' placeholder={currentStep}></input>}
-     { currentStep === "password" &&  <input onChange={(e) => setUserInfo({...userInfo, password: e.target.value })} type='password' placeholder={currentStep}></input>}
-      <button type='submit' onClick={()=> onSubmitHandler()}>Get Started</button>
+     <div className='sign-up-container'>
+      <h1 className='sign-up-title'>Unlimited movies, TV shows, and more </h1>
+      <h2 className='sign-up-text-line-1'>Watch anywhere. Cancel anytime.</h2>
+      <h3 className='sign-up-text-line-2'>Ready to watch? Enter your email to create or restart your membership.</h3>
+    <div>
+      {currentStep === "email" && <input className='sign-up-input'  onChange={(e) => setUserInfo({...userInfo, email: e.target.value})} type='email' placeholder={"Email address"}></input>}
+     { currentStep === "password" &&  <input className='sign-up-input' onChange={(e) => setUserInfo({...userInfo, password: e.target.value })} type='password' placeholder={currentStep}></input>}
+      <button className='sign-up-btn' type='submit' onClick={()=> onSubmitHandler()}>Get Started {">"}</button>
+    </div>
      </div>
     </div>
   )
