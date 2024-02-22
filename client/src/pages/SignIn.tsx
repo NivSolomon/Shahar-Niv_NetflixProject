@@ -1,6 +1,9 @@
 import axios from 'axios'
-import { ReactEventHandler, useState } from 'react'
+import { useContext, useReducer, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import userAuthReducer from '../Reducers/userAuthReducer.tsx'
+import { USER_SIGNIN, USER_SIGNOUT } from '../actions'
+import { Store } from '../store.tsx'
 
 const SignIn = () => {
  
@@ -10,6 +13,8 @@ const SignIn = () => {
     const [passwordError, setPasswordError] = useState('');
 
     const navigate = useNavigate();
+
+    const { state, dispatch: ctxDispatch } = useContext(Store);
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
@@ -40,12 +45,15 @@ const SignIn = () => {
     };
 
     const onSubmitHandler = async() => {
-            try{
-            const { data } = await axios.post('http://localhost:8080/api/v1/users/signin', {
-                email: email,
-                password: password
-            })
+      console.log("Entered onsubmit handler");
+      try{
+        const { data } = await axios.post('http://localhost:8080/api/v1/users/signin', {
+          email: email,
+          password: password});
+          ctxDispatch({ type: USER_SIGNIN, payload: JSON.stringify(data) });
+            console.log("Response data:", JSON.stringify(data)); 
             navigate('/');
+            console.log(state.userInfo)
         } catch (error: unknown) { // Specify 'unknown' as the type for the error variable
             if (axios.isAxiosError(error)) {
                 alert(error.response?.data?.message || 'An error occurred');
@@ -66,7 +74,7 @@ const SignIn = () => {
       <input name='password' ref={password} type='password' ></input><br/>  */}
       
       <div className="relative mt-5">
-    <input type="email" value={email} onChange={handleEmailChange} id="floating_filled" aria-describedby='filled_error_help'  className={`block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 ${emailError ? 'border-orange-500' : 'border-gray-300'} focus:border-orange-500 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-500 focus:outline-none focus:ring-0 focus:border-600 peer`} placeholder=" " />
+    <input type="email" value={email} onChange={handleEmailChange} id="floating_filled" aria-describedby='filled_error_help'  className={`block rounded-md px-2.5 pb-2.5 pt-5 w-60 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 ${emailError ? 'border-orange-500' : 'border-gray-300'} focus:border-orange-500 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-500 focus:outline-none focus:ring-0 focus:border-600 peer`} placeholder=" " />
     <label htmlFor="floating_filled" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-3 z-10 origin-[0] start-2.5 peer-focus:text-600 peer-focus:dark:text-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email address</label>
      </div>
      {emailError && (
@@ -78,7 +86,7 @@ const SignIn = () => {
         )}
      
       <div className="relative mt-5">
-    <input type="password" value={password} onChange={handlePasswordChange} id="floating_filled2" className={`block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300  ${passwordError ? 'border-orange-500' : 'border-gray-300'} appearance-none dark:text-white dark:border-gray-600 dark:focus:border-500  focus:outline-none focus:ring-0 focus:border-600 peer`} placeholder=" " />
+    <input type="password" value={password} onChange={handlePasswordChange} id="floating_filled2" className={`block rounded-md px-2.5 pb-2.5 pt-5 w-60 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300  ${passwordError ? 'border-orange-500' : 'border-gray-300'} appearance-none dark:text-white dark:border-gray-600 dark:focus:border-500  focus:outline-none focus:ring-0 focus:border-600 peer`} placeholder=" " />
     <label htmlFor="floating_filled2" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-3 z-10 origin-[0] start-2.5 peer-focus:text-600 peer-focus:dark:text-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label>
      </div>
      {passwordError && (
@@ -90,8 +98,10 @@ const SignIn = () => {
         )}
 
 
-      <br/><button className='loginBtn' type='submit' onClick={()=> onSubmitHandler()}>Login</button>
+      <br/><button className='loginBtn w-60' type='submit' onClick={onSubmitHandler}>Login</button>
       <h3><span className='firstTimeUsing'>First time using Netflix?</span><Link className='link' to={'/signup'}>Create an account</Link></h3>
+
+      {/* <checkbox className=''>Remember me</checkbox> */}
      </div>
  </div>
   )

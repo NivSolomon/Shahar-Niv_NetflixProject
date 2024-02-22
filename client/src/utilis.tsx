@@ -1,0 +1,5 @@
+const isAuth = () =>{
+
+}
+
+export {isAuth}
