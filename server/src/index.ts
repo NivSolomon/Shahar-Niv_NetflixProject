@@ -7,6 +7,7 @@ import movieRouter from "../routes/contentRouter";
 import seedRouter from "../routes/seedRouter";
 import contentRouter from "../routes/contentRouter";
 import myListRouter from "../routes/myListRouter";
+import verifyTokenRouter from "../routes/verifyTokenRouter";
 
 const app = express();
 dotenv.config();
@@ -22,6 +23,7 @@ app.use("/api/v1/seed", seedRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/contents", contentRouter);
 app.use("/api/v1/myList", myListRouter);
+app.use("/api/v1/verifyToken", verifyTokenRouter);
 
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING)

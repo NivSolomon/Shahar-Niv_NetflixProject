@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useContext, useReducer, useState } from 'react'
+import { useContext, useEffect, useReducer, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import userAuthReducer from '../Reducers/userAuthReducer.tsx'
 import { USER_SIGNIN, USER_SIGNOUT } from '../actions'
@@ -15,6 +15,13 @@ const SignIn = () => {
     const navigate = useNavigate();
 
     const { state, dispatch: ctxDispatch } = useContext(Store);
+    const {userInfo} = state;
+
+    useEffect(()=>{
+      if(userInfo){
+        navigate('/');
+      }
+    },[])
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
