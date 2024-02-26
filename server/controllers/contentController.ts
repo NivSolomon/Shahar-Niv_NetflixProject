@@ -18,6 +18,7 @@ const getContentById = async (req, res) => {
 
   const getAllContents = async(req, res) => {
     const contents = await Content.find();
+    console.log(contents);
     res.send(contents);
   }
 
