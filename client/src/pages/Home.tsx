@@ -20,13 +20,16 @@ const Home = () => {
        const {data} = await axios.get('http://localhost:8080/api/v1/contents', {
         headers: { authorization: `Bearer ${userInfo.token}` }})
         console.log(data);
-       setContents(data);
-      }catch(err){
-        alert(err);
+        setContents(data);
+      } catch (err) {
+        console.log(err);
       }
+    };
+  
+    if (userInfo) {
+      fetchData();
     }
-    fetchData();
-  },[userInfo.token])
+  }, [userInfo]);
 
   if (loading) {
     console.log(loading);
@@ -44,7 +47,9 @@ const Home = () => {
   return (
     <div>
       <div className='main-content'>Home</div>   
-      <Carousel contents={contents}/>  
+      {
+        contents ? <Carousel contents={contents}/> : <div><h1>Loading...</h1></div>
+      } 
 
     </div>
 
