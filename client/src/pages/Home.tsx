@@ -19,19 +19,11 @@ const Home = () => {
 
   const userInfo = state.userInfo;
 
-  useEffect(() => {
-    console.log(userInfo);
-
-    const fetchData = async () => {
-      try {
-        if (!userInfo || !userInfo.token) {
-
-          return;
-        }
-  
-        const { data } = await axios.get('http://localhost:8080/api/v1/contents', {
-          headers: { authorization: `Bearer ${userInfo.token}` }
-        });
+  useEffect(()=>{
+    const fetchData= async() => {
+      try{
+       const {data} = await axios.get('http://localhost:8080/api/v1/contents', {
+        headers: { authorization: `Bearer ${userInfo.token}` }})
         console.log(data);
         setContents(data);
         
@@ -57,9 +49,9 @@ const Home = () => {
   }
 
 
+
   return (
     <div>
-
       <div className='main-content'>Home</div>   
       {
         contents ? <Carousel contents={contents}/> : <div><h1>Loading...</h1></div>
