@@ -1,20 +1,4 @@
-// import { createContext, useReducer } from "react";
-// import storeReducer from './Reducers/userAuthReducer'
 
-// export const Store = createContext();
-
-// const userInfoFromLocalStorage = localStorage.getItem("userInfo");
-
-// const initialState = {
-//   userInfo: userInfoFromLocalStorage
-//     ? JSON.parse(localStorage.getItem("userInfo")): null
-// };  
-
-//   export const StoreProvider = ({ children }) => {
-//     const [state, dispatch] = useReducer(storeReducer, initialState);
-//     const body = { state, dispatch };
-//     return <Store.Provider value={body}>{children}</Store.Provider>;
-//   };
 
 import { createContext, useReducer } from "react";
 import storeReducer from './Reducers/userAuthReducer'
