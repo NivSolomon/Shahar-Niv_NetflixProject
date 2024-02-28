@@ -17,7 +17,7 @@ const Home = () => {
   // ? JSON.parse(localStorage.getItem("userInfo"))
   // : null;
 
-  const userInfo = JSON.parse(state.userInfo);
+  const userInfo = state.userInfo;
 
   useEffect(() => {
     console.log(userInfo);
@@ -34,6 +34,7 @@ const Home = () => {
         });
         console.log(data);
         setContents(data);
+        
       } catch (err) {
         console.log(err);
       }
