@@ -12,7 +12,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [contents, setContents] = useState();
   const {state, dispatch: ctxDispatch} = useContext(Store);
-  const { userInfo } = state;
+  const userInfo = JSON.parse(state.userInfo);
 
   useEffect(()=>{
     const fetchData= async() => {
@@ -40,9 +40,9 @@ const Home = () => {
   }
 
 
+
   return (
     <div>
-
       <div className='main-content'>Home</div>   
       <Carousel contents={contents}/>  
 

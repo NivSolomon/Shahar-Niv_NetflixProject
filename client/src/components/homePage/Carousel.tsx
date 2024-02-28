@@ -17,7 +17,7 @@ const Carousel = ({contents}) => {
 
   return (
     <Slider {...settings}>
-     {contents.map(content => <div>
+     {contents && contents.map(content => <div>
       <h1>{content.title}</h1>
      </div>)}
     </Slider>
