@@ -1,0 +1,99 @@
+
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+
+}
+
+.carouselViewport {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.carouselContainer {
+  display: flex;
+}
+
+
+.arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prevButton,
+.nextButton {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 10; /* Ensure arrows are above the cards */
+}
+
+.prevButton {
+  left: 0;
+}
+
+.nextButton {
+  right: 0;
+}
+
+
+.carouselWrapper {
+  position: relative;
+  /* height: 125px; */
+  padding-top: 1em;
+}
+
+.carouselItem {
+  margin: 0 10px; 
+  margin-left: 2em;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+}
+
+.nextArrow {
+  right: -30px; /* Adjust position as needed */
+}
+
+.prevArrow {
+  left: -30px; /* Adjust position as needed */
+}
+
+
+.carouselWrapper {
+  position: relative;
+}
+
+.carouselItem {
+  margin: 0 10px; /* Adjust margin as needed */
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  z-index: 10; /* Ensure arrows are above the carousel items */
+}
+
+.nextArrow {
+  right: 0; /* Adjust position as needed */
+}
+
+.prevArrow {
+  left: 0; /* Adjust position as needed */
+}

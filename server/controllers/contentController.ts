@@ -1,4 +1,5 @@
 import Content from "../models/Content";
+import ListNames from "../Enums/ListNames";
 
 const getContentById = async (req, res) => {
     const { id } = req.params;
@@ -32,4 +33,43 @@ const getContentById = async (req, res) => {
     res.send(serieses);
   }
 
-  export {getContentById, getAllContents, getAllMovies, getAllSerieses}
+  const getByListName = async (req, res) => {
+
+    const contents = await Content.find();
+
+    const contentsByListNames = {};
+    
+    for (let i = 0; i < contents.length; i++) {
+      for (let y = 0; y < contents[i].listNames.length; y++) {
+        const listName = contents[i].listNames[y];
+        if (!contentsByListNames[listName]) {
+          contentsByListNames[listName] = [];
+        }
+        contentsByListNames[listName].push(contents[i]);
+      }
+    }
+    res.send(contentsByListNames);
+
+  }
+
+
+  // const getByListName = async (req, res) => {
+  //   try {
+  //     const contentsByListNames = await Content.aggregate([
+  //       { $unwind: "$listNames" }, 
+  //       {
+  //         $group: {
+  //           _id: "$listNames", 
+  //           contents: { $push: "$$ROOT" },
+  //         },
+  //       },
+  //     ]);
+  
+  //     res.json(contentsByListNames);
+  //   } catch (error) {
+  //     res.status(500).json({ message: error.message });
+  //   }
+  // };
+  
+
+  export {getContentById, getAllContents, getAllMovies, getAllSerieses, getByListName}    

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
+import styles from './styles/Card.module.css'
+import CardHover from './CardHover';
 
 const Card = ({ content }) => {
   const [isHover, setIsHover] = useState(false);
@@ -15,13 +17,10 @@ const Card = ({ content }) => {
     setTrailerStarted(false);
   };
 
-  const handleTrailerStart = () => {
-    setTrailerStarted(true);
-  };
 
   return (
     <div
-      className={`card-container ${isHover ? 'hovered' : ''}`}
+      className={`${styles.cardContainer}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -30,27 +29,17 @@ const Card = ({ content }) => {
         alt={content.title}
         className={`thumbnail ${isHover ? 'hidden' : ''}`}
       />
+      
       {
-        trailerStarted ?   <ReactPlayer
-        className={`video-player ${isHover ? 'visible' : ''}`}
-        url={content.trailerSource}
-        playing={isHover ? true : false} // Ensure the player starts when both hover and trailer started
-        controls={false}
-        height="7.7em"
-        width="15.4em"
-        loop={true}      
-        onPlay={handleTrailerStart}
-        
-      /> 
+        trailerStarted ?   
+        <CardHover isHover={isHover} content={content} />
       :
       <img
       src={content.imgThumb}
       alt={content.title}
       className={`thumbnail`}
     />
-      }
-    
-      {isHover && !trailerStarted && <div className="title">{content.title}</div>}
+}
     </div>
   );
 };

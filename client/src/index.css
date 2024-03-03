@@ -219,16 +219,13 @@ header {
   margin-left: 0.5%;
 }
 
-.card {
 
-}
-
-
+/* 
 .card-container {
   position: relative;
   width: 15.4em;
   height: 7.7em;
-  transition: width 0.2s ease, height 0.2s ease; /* Added border-color to the transition */
+  transition: width 0.2s ease, height 0.2s ease; 
 
 }
 
@@ -239,7 +236,7 @@ header {
   z-index: 3;
   background-color: grey;
 }
-
+ */
 
 
 .thumbnail,
@@ -322,3 +319,6 @@ height: 7em;
 .prev-btn{
   left: 0;
 }
+
+
+
