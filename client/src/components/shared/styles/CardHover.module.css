@@ -1,0 +1,33 @@
+.cardContainer {
+  border: 1px solid #ccc;
+  z-index: 10;
+  background-color: grey;
+   /* Increase padding to provide more space for content */
+  margin-bottom: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%; /* Center the card horizontally */
+  transform: translate(-50%, -50%); 
+  transition: transform 2s ease;
+}
+
+.react-player {
+  max-width: calc(100% - 40px); /* Adjust max-width of the player to fit inside the card */
+  margin-bottom: 20px; /* Add space below the player */
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center; /* Center the items vertically */
+  padding-top: 10px; /* Adjust padding */
+}
+
+.buttonsContainer button {
+  margin-left: 10px; /* Add space between the button and the play icon */
+}
+
+.matchPercent{
+  color: green;
+  font-size: 18px;
+  font-weight: bold;
+}

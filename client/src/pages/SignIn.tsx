@@ -58,7 +58,7 @@ const SignIn = () => {
           email: email,
           password: password});
           await ctxDispatch({ type: USER_SIGNIN, payload: data });
-            console.log("Response data:", JSON.stringify(data)); 
+            console.log("Response data:", data); 
             navigate('/');
         } catch (error: unknown) { // Specify 'unknown' as the type for the error variable
             if (axios.isAxiosError(error)) {

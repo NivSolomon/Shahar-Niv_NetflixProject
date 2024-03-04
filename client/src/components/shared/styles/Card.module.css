@@ -1,0 +1,15 @@
+
+.cardContainer {
+    position: relative;
+    width: 15.2em;
+    height: 7.6em;
+    transition: width 0.2s ease, height 0.2s ease; /* Added border-color to the transition */
+  
+  }
+  
+  /* .cardContainer:hover {
+    border: 1px solid #ccc;
+    width: 17em;
+    z-index: 3;
+    background-color: grey;
+  } */

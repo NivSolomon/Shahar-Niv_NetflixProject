@@ -12,15 +12,23 @@ const Home = () => {
   const navigate = useNavigate();
   const [contents, setContents] = useState();
   const {state, dispatch: ctxDispatch} = useContext(Store);
+  
+  // const { userInfo } = state;
+  // const userInfo = localStorage.getItem("userInfo")
+  // ? JSON.parse(localStorage.getItem("userInfo"))
+  // : null;
+
   const userInfo = state.userInfo;
 
   useEffect(()=>{
     const fetchData= async() => {
       try{
-       const {data} = await axios.get('http://localhost:8080/api/v1/contents', {
-        headers: { authorization: `Bearer ${userInfo.token}` }})
-        console.log(data);
-        setContents(data);
+      //  const {data} = await axios.get('http://localhost:8080/api/v1/contents/listnames', {
+      //   headers: { authorization: `Bearer ${userInfo.token}` }})
+      //   console.log(data);
+      console.log(state.contents);
+        // setContents(data);
+        
       } catch (err) {
         console.log(err);
       }
@@ -42,16 +50,29 @@ const Home = () => {
     return null;
   }
 
+  // const keys = Object.keys(state.contents);
+  // const value = Object.keys(state.contents);
 
 
   return (
-    <div>
-      <div className='main-content'>Home</div>   
-      {
-        contents ? <Carousel contents={contents}/> : <div><h1>Loading...</h1></div>
-      } 
+    <>
+    {
 
-    </div>
+    Object.entries(state.contents).map(([key, value]) => (
+ <div>
+  <h3>{key}</h3>
+  <Carousel contents={value}/>
+ </div>
+
+    ))
+
+    }
+    
+    </>
+
+
+
+    
 
   )
 }
