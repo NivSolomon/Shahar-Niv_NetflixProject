@@ -189,6 +189,8 @@ header {
 
 .navbar__links {
   display: flex;
+  align-items: center; /* Align links vertically */
+  margin-left: 2em;
 }
 
 .navbar__link {
@@ -211,6 +213,19 @@ header {
 
 .navbar__signoutBtn:hover {
   text-decoration: underline;
+}
+
+.navbar__icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar__icon {
+  margin-left: 0.8em;
+}
+.searchBoxInput{
+  color: black;
 }
 
 .img-thumb {
@@ -320,5 +335,18 @@ height: 7em;
   left: 0;
 }
 
-
+/* .results-cotainer{
+  display: flex;
+  flex-direction: row;
+} */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto ;
+  padding: 0.5em;
+}
+.grid-item {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
 

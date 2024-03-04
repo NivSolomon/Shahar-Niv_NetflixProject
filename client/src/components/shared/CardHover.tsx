@@ -17,7 +17,8 @@ const CardHover = ({ isHover, content }) => {
         controls={false}
         height="7.7em"
         width="15.4em"
-        loop={true}     
+        loop={true} 
+        muted={true}    
       /> 
       <div className={styles.buttonsContainer}>
       <BsFillPlayFill size={25} />
