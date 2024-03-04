@@ -57,7 +57,7 @@ const SignIn = () => {
         const { data } = await axios.post('http://localhost:8080/api/v1/users/signin', {
           email: email,
           password: password});
-          await ctxDispatch({ type: USER_SIGNIN, payload: JSON.stringify(data) });
+          await ctxDispatch({ type: USER_SIGNIN, payload: data });
             console.log("Response data:", JSON.stringify(data)); 
             navigate('/');
         } catch (error: unknown) { // Specify 'unknown' as the type for the error variable

@@ -34,7 +34,7 @@ const useTokenVerification = (): TokenVerificationState => {
     };
 
     verifyToken();
-  }, []);
+  }, [userInfo.token]);
 
   return { loading, isValidToken };
 };

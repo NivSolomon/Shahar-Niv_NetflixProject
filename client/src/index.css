@@ -212,3 +212,33 @@ header {
 .navbar__signoutBtn:hover {
   text-decoration: underline;
 }
+
+.imgThumb {
+  width: 15.6em;
+  height: 7.8em;
+  padding-left: 5px;
+}
+.slider-container {
+  width: 100%; /* Set the width to fill its parent */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.prev-btn{
+  width: 5%;
+  height: 15%;
+}
+.next-btn{
+  width: 5%;
+  height: 15%;
+}
+
+.carousel-item {
+  display: inline-block; /* Display items horizontally */
+  margin: 0 10px; /* Adjust spacing between items */
+  vertical-align: top; /* Align items properly */
+  transition: transform 0.3s; /* Adding smooth transition */
+}
+
+.carousel-item.enlarged {
+  transform: scale(1.5); /* Enlarge by 50% on hover */
+}

@@ -12,7 +12,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [contents, setContents] = useState();
   const {state, dispatch: ctxDispatch} = useContext(Store);
-  const userInfo = JSON.parse(state.userInfo);
+  const userInfo = state.userInfo;
 
   useEffect(()=>{
     const fetchData= async() => {
@@ -29,12 +29,12 @@ const Home = () => {
     if (userInfo) {
       fetchData();
     }
-  }, [userInfo]);
+  }, []);
 
-  if (loading) {
-    console.log(loading);
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   console.log(loading);
+  //   return <div>Loading...</div>;
+  // }
 
   if (!isValidToken) {
     console.log('invalid token')
