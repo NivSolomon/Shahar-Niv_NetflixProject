@@ -7,13 +7,16 @@ import Footer from './components/shared/Footer'
 import SearchResults from './components/shared/SearchResults'
 import { useContext, useEffect } from 'react'
 import { getByListNames } from './services/ContentService'
-import { Store } from './store'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo, contents } = state;
+  // const { state, dispatch: ctxDispatch } = useContext(Store);
+  // const { userInfo, contents } = state;
+  const userInfo = useSelector((state) => state.userAuth.userInfo);
+  const dispatch = useDispatch();
+
 
 useEffect(() => {
   const fetchData = async () => {
@@ -22,7 +25,7 @@ useEffect(() => {
             const {data} = await axios.get('http://localhost:8080/api/v1/contents/listnames', {
               headers: { authorization: `Bearer ${userInfo.token}` }})
             console.log("data from app.tsx:", data);
-            await ctxDispatch({ type: "SET_CONTENTS", payload: data }); 
+            dispatch({ type: "SET_CONTENTS", payload: data }); 
           }
         } catch (err) {
           console.log(err);
@@ -30,7 +33,7 @@ useEffect(() => {
   };
         fetchData();
     
-}, [])
+}, [userInfo])
 
   return (
     <>

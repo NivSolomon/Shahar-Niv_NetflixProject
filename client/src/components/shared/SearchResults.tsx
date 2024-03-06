@@ -1,33 +1,37 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { Store } from "../../store";
 import Card from "./Card";
+import { useSelector } from "react-redux";
+import { userInfo } from "os";
 
 const SearchResults = () => {
   const { search } = useLocation();
   const searchquery = new URLSearchParams(search);
   const query = searchquery.toString().substring(1);
-
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { contents } = state;
-
-  const mergedArray = Object.values(contents).reduce(
-    (result, array) => {
-      array.forEach(content => {
-        // Check if the content already exists in the mergedArray
-        if (!result.some(item => item._id === content._id)) {
-          result.push(content);
-        }
-      });
-      return result;
-    },
-    []
-  );
-
+  const [mergedArray, setMergedArray] = useState([]);
   const [filterContents, setFilterContents] = useState([]);
 
+  // const { state, dispatch: ctxDispatch } = useContext(Store);
+  const contents = useSelector((state) => state.contents.contents);
+
   useEffect(() => {
-    console.log(mergedArray);
+  if(contents) {
+  const mergedArrayResult = Object.values(contents).reduce((result, array) => {
+    array.forEach((content) => {
+      if (!result.some((item) => item._id === content._id)) {
+        result.push(content);
+      }
+    });
+    return result;
+  }, [])
+
+  setMergedArray(mergedArrayResult);
+}
+  }, [contents])
+
+
+  useEffect(() => {
+    
     if (query) {
       // Filter contents based on the search query
       const filteredContents = mergedArray.filter((content) =>
@@ -44,7 +48,11 @@ const SearchResults = () => {
       <h1>Showing results for: "{query}"</h1>
       <div className="grid-container">
         {filterContents &&
-          filterContents.map((content) => <div className="grid-item"><Card content={content}/></div>)}
+          filterContents.map((content) => (
+            <div className="grid-item">
+              <Card content={content} />
+            </div>
+          ))}
       </div>
     </div>
   );

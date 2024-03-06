@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Store } from '../store';
 import { USER_SIGNIN, USER_SIGNOUT } from '../actions'
 import { getByListNames } from '../services/ContentService';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,9 @@ const SignIn = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userAuth.userInfo);
+
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -35,7 +38,7 @@ const SignIn = () => {
         email: email,
         password: password
       });
-      await ctxDispatch({ type: USER_SIGNIN, payload: data });
+      dispatch({ type: USER_SIGNIN, payload: data });
       navigate('/');
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -1,17 +1,20 @@
-import { SET_CONTENTS } from '../actions.jsx';
+// reducers/contentsReducer.js
+import { SET_CONTENTS } from '../../src/actions';
 
-const contentsReducer = (state, action) => {
-  
-    switch (action.type) {
-        case SET_CONTENTS:{
-            // localStorage.setItem('userInfo', JSON.stringify(action.payload));
-            return {...state, contents: action.payload};
-        }
+const initialState = {
+  contents: null,
+};
 
-        default:{
-            return {...state};
-        }
-    }
-}
+const contentsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_CONTENTS:
+      return {
+        ...state,
+        contents: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
-export default contentsReducer
+export default contentsReducer;

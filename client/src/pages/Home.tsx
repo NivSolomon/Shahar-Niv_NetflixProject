@@ -1,16 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import useTokenVerification from "../hooks/useTokenVerification";
+// import useTokenVerification from "../hooks/useTokenVerification";
 import Carousel from "../components/homePage/Carousel";
 import { useContext, useEffect, useState } from "react";
 import { getByListNames } from "../services/ContentService";
-import { Store } from "../store";
+import { useSelector } from 'react-redux';
 
 const Home = () => {
-  const { isValidToken } = useTokenVerification();
+  // const { isValidToken } = useTokenVerification();
   const navigate = useNavigate();
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo, contents } = state;
+  // const { state, dispatch: ctxDispatch } = useContext(Store);
+  // const { userInfo, contents } = state;
   const [firstLoad, setfirstLoad] = useState(true);
+  const contents = useSelector((state) => state.contents.contents);
+  const userInfo = useSelector((state) => state.userAuth.userInfo);
+
+  // useEffect(() => {
+  //    console.log(contents);
+  //    console.log(userInfo);
+  // }, [])
 
   // useEffect(() => {
   //   if (firstLoad) {
@@ -43,35 +50,35 @@ const Home = () => {
   //     }
   // }, []); // Dependency array to re-run effect when userInfo changes
 
-  useEffect(() => {
-    const tokenHandler = () => {
-      if (!userInfo) {
-        navigate("/signin");
-        return null;
-      }
-    };
-    const fetchData = async () => {
-          try {
-            if (userInfo) {
-              const data = await getByListNames(userInfo.userInfo);
-              await ctxDispatch({ type: "SET_CONTENTS", payload: data });
-              console.log("contents from use effect 2:", data);
-            }
-          } catch (err) {
-            console.log(err);
-          }
-        };
+//   useEffect(() => {
+//     const tokenHandler = () => {
+//       if (!userInfo) {
+//         navigate("/signin");
+//         return null;
+//       }
+//     };
+//     const fetchData = async () => {
+//           try {
+//             if (userInfo) {
+//               const data = await getByListNames(userInfo.userInfo);
+//               await ctxDispatch({ type: "SET_CONTENTS", payload: data });
+//               console.log("contents from use effect 2:", data);
+//             }
+//           } catch (err) {
+//             console.log(err);
+//           }
+//         };
 
     
-    console.log("userInfo from use effect:", userInfo.userInfo);
-    console.log("contents from use effect:", contents);
-fetchData();
-    tokenHandler();
-  }, []);
+//     console.log("userInfo from use effect:", userInfo.userInfo);
+//     console.log("contents from use effect:", contents);
+// fetchData();
+//     tokenHandler();
+//   }, []);
 
   return (
     <>
-      <p>{userInfo.email}</p>
+      <p>{userInfo.email}</p> 
       {contents && Object.entries(contents).map(([key, value]) => (
         <div key={key}>
           <h3>{key}</h3>

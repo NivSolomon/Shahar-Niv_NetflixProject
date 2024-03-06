@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Store } from '../../store';
 import { USER_SIGNIN, USER_SIGNOUT } from '../../actions'
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import SearchBoxInput from './SearchBoxInput';
-
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Navbar = () => {
 
-    const { state, dispatch: ctxDispatch } = useContext(Store);
+    // const { state, dispatch: ctxDispatch } = useContext(Store);
     const [searchToggle, setSearchToggle] = useState(false)
     const [inputText, setInputText] = useState("")
-    
+    const dispatch = useDispatch();
+
     const navigate = useNavigate();
 
     const searchToggleHangdler = () => {
@@ -59,7 +59,7 @@ const Navbar = () => {
 
          }
          <IoMdNotificationsOutline className='navbar__icon'/>
-         <Link to={'/signin'} className='navbar__icon'><button onClick={()=>ctxDispatch({type: USER_SIGNOUT})}>Sign Out</button></Link>      
+         <Link to={'/signin'} className='navbar__icon'><button onClick={()=>dispatch({type: USER_SIGNOUT})}>Sign Out</button></Link>      
       </div>
     </nav>
         

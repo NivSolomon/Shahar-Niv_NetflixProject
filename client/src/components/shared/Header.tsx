@@ -6,7 +6,7 @@ import Navbar from '../header/NavBar';
 
 const Header = () => {
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  // const { state, dispatch: ctxDispatch } = useContext(Store);
 
   return (
     <header className='header'>

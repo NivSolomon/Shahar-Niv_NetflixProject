@@ -1,7 +1,8 @@
 // useTokenVerification.ts
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Store } from '../store';
+import { useSelector } from 'react-redux';
+
 
 interface TokenVerificationState {
   loading: boolean;
@@ -11,8 +12,9 @@ interface TokenVerificationState {
 const useTokenVerification = (): TokenVerificationState => {
   const [loading, setLoading] = useState(true);
   const [isValidToken, setIsValidToken] = useState<boolean | null>(null);
-  const {state, dispatch: ctxDispatch} = useContext(Store);
-  const { userInfo } = state;
+  const userInfo = useSelector((state) => state.userAuth.userInfo);
+  // const {state, dispatch: ctxDispatch} = useContext(Store);
+  // const { userInfo } = state;
 
 
   useEffect(() => {
