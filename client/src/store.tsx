@@ -1,5 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
-import storeReducer from './Reducers/userAuthReducer';
+import userAuthReducer from './Reducers/userAuthReducer';
+import contentsReducer from "./Reducers/contentsReducer";
 import { getByListNames } from "./services/ContentService";
 
 // Define an interface for the stored user information
@@ -27,24 +28,35 @@ const userInfo: UserInfo | null = userInfoFromLocalStorage
   : null;
 
 // Define contents using getByListNames if userInfo is available
-const contents = userInfo ? getByListNames(userInfo) : null;
-
+const data = userInfo ? await getByListNames(userInfo) : null;
+console.log("Contents: ", data);
+console.log("UserInfo: ", userInfo)
 // Define the initial state
 const initialState: InitialStateType = {
-  userInfo: userInfo,
-  contents: await contents,
+  userInfo: await userInfo, 
+  contents: await data, // Include contents in the initial state
 };
 
 // Define the provider component
 export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(storeReducer, initialState);
+  // Combine both reducers into one custom reducer
+  const rootReducer = (state: InitialStateType, action: any) => ({
+    userInfo: userAuthReducer(state.userInfo, action),
+    contents: contentsReducer(state.contents, action),
+  });
 
-  // Update contents if userInfo changes
+  const [state, dispatch] = useReducer(rootReducer, initialState);
+
   // useEffect(() => {
-  //   if (state.userInfo) {
-  //     const newContents = getByListNames(state.userInfo);
-  //     dispatch({ type: "UPDATE_CONTENTS", payload: newContents });
-  //   }
+  //   // Fetch contents when userInfo changes
+  //   const fetchContents = async () => {
+  //     if (state.userInfo) {
+  //       const newContents = await getByListNames(state.userInfo);
+  //       dispatch({ type: "SET_CONTENTS", payload: newContents });
+  //     }
+  //   };
+
+  //   fetchContents();
   // }, [state.userInfo]);
 
   const body = { state, dispatch };

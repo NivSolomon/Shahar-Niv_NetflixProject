@@ -11,10 +11,11 @@ const getAllContents = async(userInfo: any) => {
 }
 
 const getByListNames = async(userInfo) => {
+        console.log("User info from getByListNames: ", userInfo);
         try{
          const {data} = await axios.get('http://localhost:8080/api/v1/contents/listnames', {
           headers: { authorization: `Bearer ${userInfo.token}` }})
-        //    console.log(data);
+        console.log("getByListNames Function:", data);
           // setContents(data);
           return data;
           

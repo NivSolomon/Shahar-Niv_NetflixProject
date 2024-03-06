@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,19 +16,27 @@ const Carousel = ({ contents }) => {
     prevArrow: <PrevArrow />,
   };
 
+  useEffect(() => {
+   console.log("contents in carousel: ", contents);
+  }, [])
+
   return (
+
+    
     <div className={styles.carouselWrapper}>
-      <Slider {...settings}>
-        {contents &&
-          contents.map(content => (
-            <div key={content._id} className={styles.carouselItem}>
-              <Card content={content} />
-            </div>
-          ))}
-      </Slider>
-    </div>
+    <Slider {...settings}>
+      {Array.isArray(contents) && // Check if contents is an array
+        contents.map(content => (
+          <div key={content._id} className={styles.carouselItem}>
+            <Card content={content} />
+          </div>
+        ))}
+    </Slider>
+  </div>
   );
 };
+
+
 
 const NextArrow = ({ onClick }) => {
   return (

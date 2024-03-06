@@ -1,80 +1,87 @@
-import { useNavigate } from 'react-router-dom';
-import useTokenVerification from '../hooks/useTokenVerification';
-import Carousel from '../components/homePage/Carousel';
-import { useContext, useEffect, useState } from 'react';
-import {getAllContents} from '../services/ContentService';
-import { Store } from '../store';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import useTokenVerification from "../hooks/useTokenVerification";
+import Carousel from "../components/homePage/Carousel";
+import { useContext, useEffect, useState } from "react";
+import { getByListNames } from "../services/ContentService";
+import { Store } from "../store";
 
 const Home = () => {
-
-  const { loading, isValidToken } = useTokenVerification();
+  const { isValidToken } = useTokenVerification();
   const navigate = useNavigate();
-  const [contents, setContents] = useState();
-  const {state, dispatch: ctxDispatch} = useContext(Store);
-  
-  // const { userInfo } = state;
-  // const userInfo = localStorage.getItem("userInfo")
-  // ? JSON.parse(localStorage.getItem("userInfo"))
-  // : null;
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo, contents } = state;
+  const [firstLoad, setfirstLoad] = useState(true);
 
-  const userInfo = state.userInfo;
+  // useEffect(() => {
+  //   if (firstLoad) {
+  //     // Only reload the page on the first load
+  //     setfirstLoad(false);
+  //     location.reload();
+  //   }
+  // }, [firstLoad]);
 
-  useEffect(()=>{
-    const fetchData= async() => {
-      try{
-      //  const {data} = await axios.get('http://localhost:8080/api/v1/contents/listnames', {
-      //   headers: { authorization: `Bearer ${userInfo.token}` }})
-      //   console.log(data);
-      console.log(state.contents);
-        // setContents(data);
-        
-      } catch (err) {
-        console.log(err);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       if (userInfo) {
+  //         const data = await getByListNames(userInfo);
+  //         ctxDispatch({ type: "SET_CONTENTS", payload: data });
+
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+
+  //   fetchData(); // Call fetchData directly here
+  // }, []); // Add userInfo and ctxDispatch to dependency array
+
+  //   useEffect(() => {
+  //     // Fetch content data when userInfo changes or when the component mounts
+  //     if (userInfo) {
+  //         fetchData(); // Call a function to fetch data
+  //     }
+  // }, []); // Dependency array to re-run effect when userInfo changes
+
+  useEffect(() => {
+    const tokenHandler = () => {
+      if (!userInfo) {
+        navigate("/signin");
+        return null;
       }
     };
-  
-    if (userInfo) {
-      fetchData();
-    }
+    const fetchData = async () => {
+          try {
+            if (userInfo) {
+              const data = await getByListNames(userInfo.userInfo);
+              await ctxDispatch({ type: "SET_CONTENTS", payload: data });
+              console.log("contents from use effect 2:", data);
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        };
+
+    
+    console.log("userInfo from use effect:", userInfo.userInfo);
+    console.log("contents from use effect:", contents);
+fetchData();
+    tokenHandler();
   }, []);
-
-  // if (loading) {
-  //   console.log(loading);
-  //   return <div>Loading...</div>;
-  // }
-
-  if (!isValidToken) {
-    console.log('invalid token')
-    navigate('/signin')
-    return null;
-  }
-
-  // const keys = Object.keys(state.contents);
-  // const value = Object.keys(state.contents);
-
 
   return (
     <>
-    {
-
-    Object.entries(state.contents).map(([key, value]) => (
- <div>
-  <h3>{key}</h3>
-  <Carousel contents={value}/>
- </div>
-
-    ))
-
-    }
-    
+      <p>{userInfo.email}</p>
+      {contents && Object.entries(contents).map(([key, value]) => (
+        <div key={key}>
+          <h3>{key}</h3>
+          <Carousel contents={value} />
+        </div>
+      ))}
+      {!contents && <h1>Loading...</h1>}
     </>
+  );
+  
+};
 
-
-
-    
-
-  )
-}
-
-export default Home
+export default Home;

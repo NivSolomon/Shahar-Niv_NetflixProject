@@ -4,8 +4,8 @@ const contentsReducer = (state, action) => {
   
     switch (action.type) {
         case SET_CONTENTS:{
-            localStorage.setItem('userInfo', JSON.stringify(action.payload));
-            return {...state, userInfo: action.payload};
+            // localStorage.setItem('userInfo', JSON.stringify(action.payload));
+            return {...state, contents: action.payload};
         }
 
         default:{
