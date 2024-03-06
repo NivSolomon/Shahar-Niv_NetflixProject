@@ -1,5 +1,5 @@
 // reducers/contentsReducer.js
-import { SET_CONTENTS } from '../../src/actions';
+import { SET_CONTENTS} from '../../src/actions';
 
 const initialState = {
   contents: null,
@@ -12,6 +12,7 @@ const contentsReducer = (state = initialState, action) => {
         ...state,
         contents: action.payload,
       };
+
     default:
       return state;
   }

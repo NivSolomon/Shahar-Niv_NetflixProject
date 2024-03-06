@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactPlayer from 'react-player/youtube';
 import styles from './styles/CardHover.module.css'
 import { BsFillPlayFill } from "react-icons/bs";
 import { GoMute, GoUnmute } from "react-icons/go";
+import { useDispatch } from 'react-redux';
+import { ADD_CONTENT_TO_MY_LIST } from '../../actions';
+
+
+const CardHover = ({ isHover, content, isExistsInMyList }) => {
 
 
 
-const CardHover = ({ isHover, content }) => {
+  const dispatch = useDispatch();
+  const addButtonHandler = () => {
+    dispatch({type: ADD_CONTENT_TO_MY_LIST, payload: content});
+  }
+
+
   return (
     <>
     <div className={styles.cardContainer}>
@@ -22,7 +32,7 @@ const CardHover = ({ isHover, content }) => {
       /> 
       <div className={styles.buttonsContainer}>
       <BsFillPlayFill size={25} />
-      <button>+</button>
+      <button onClick={addButtonHandler}>+</button>
       </div>
       <p>
        <span className={styles.matchPercent}>95% Match</span> {content.duration}

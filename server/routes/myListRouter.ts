@@ -4,6 +4,6 @@ import expressAsyncHandler from 'express-async-handler';
 import { getAllList } from '../controllers/myListController';
 
 const myListRouter = express.Router();
-myListRouter.get('/', isAuth,expressAsyncHandler(getAllList));
+myListRouter.post('/', isAuth, expressAsyncHandler(getAllList));
 
 export default myListRouter;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,6 +16,8 @@ const Carousel = ({ contents }) => {
     prevArrow: <PrevArrow />,
   };
 
+  const [isExistsInMyList, setIsExistsInMyList] = useState(false);
+
   useEffect(() => {
    console.log("contents in carousel: ", contents);
   }, [])
@@ -28,7 +30,7 @@ const Carousel = ({ contents }) => {
       {Array.isArray(contents) && // Check if contents is an array
         contents.map(content => (
           <div key={content._id} className={styles.carouselItem}>
-            <Card content={content} />
+            <Card content={content} isExistsInMyList={isExistsInMyList}/>
           </div>
         ))}
     </Slider>
