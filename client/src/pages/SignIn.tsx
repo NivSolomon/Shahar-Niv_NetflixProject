@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useContext, useEffect, useReducer, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import userAuthReducer from '../Reducers/userAuthReducer.tsx'
-import { USER_SIGNIN, USER_SIGNOUT } from '../actions'
+import { USER_SIGNIN, SET_MY_CONTENTS } from '../actions'
 import { Store } from '../store.tsx'
 
 const SignIn = () => {
@@ -22,6 +22,22 @@ const SignIn = () => {
         navigate('/');
       }
     },[])
+
+    const getMyListHandler = async(userId: any, token: any) => {
+      try{
+        const {data} = await axios.get('http://localhost:8080/api/v1/mylist', {_id : userId, 
+          headers: { authorization: `Bearer ${token}` }});
+        ctxDispatch({type: SET_MY_CONTENTS, payload: data});
+      }
+      catch(error){
+        if (axios.isAxiosError(error)) {
+          alert(error.response?.data?.message || 'An error occurred');
+      } else {
+          // Handle non-Axios errors
+          alert('An error occurred');
+      }
+    }
+  }
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
@@ -58,6 +74,8 @@ const SignIn = () => {
           email: email,
           password: password});
           await ctxDispatch({ type: USER_SIGNIN, payload: data });
+          // await getMyListHandler(data.id, data.token);
+          console.log(data.token);
             console.log("Response data:", data); 
             navigate('/');
         } catch (error: unknown) { // Specify 'unknown' as the type for the error variable

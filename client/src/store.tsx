@@ -13,6 +13,7 @@ interface UserInfo {
 interface InitialStateType {
   userInfo: UserInfo | null;
   contents: any[] | null; // Assuming contents is an array of some type
+  myList: Array<any> | null;
 }
 
 // Create a context for the store
