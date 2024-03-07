@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
 import styles from './styles/Card.module.css'
 import CardHover from './CardHover';
+import { IContent } from '../../types/interfaces';
 
-const Card = ({ content }) => {
+interface Props {
+  content: IContent;
+}
+
+
+const Card : React.FC<Props> = ({ content }) => {
   const [isHover, setIsHover] = useState(false);
   const [trailerStarted, setTrailerStarted] = useState(false);
+  
 
   const handleMouseEnter = () => {
     setIsHover(true);

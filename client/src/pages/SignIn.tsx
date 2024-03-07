@@ -1,10 +1,8 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { USER_SIGNIN, USER_SIGNOUT } from '../actions'
-import { getByListNames } from '../services/ContentService';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { USER_SIGNIN } from '../actions'
+import { useDispatch } from 'react-redux';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -13,24 +11,23 @@ const SignIn = () => {
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.userAuth.userInfo);
 
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
     setEmailError(!isValidEmail(value) ? 'Please enter a valid email.' : '');
   };
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
     setPasswordError(!isValidPassword(value) ? 'Your password must contain between 4 and 60 characters.' : '');
   };
 
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidEmail = (email : string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const isValidPassword = (password) => password.length >= 4 && password.length <= 60;
+  const isValidPassword = (password : string) => password.length >= 4 && password.length <= 60;
 
   const onSubmitHandler = async () => {
     try {
