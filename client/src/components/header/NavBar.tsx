@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { USER_SIGNIN, USER_SIGNOUT } from '../../actions'
 import { BsSearch } from "react-icons/bs";
@@ -19,7 +19,7 @@ const Navbar = () => {
     const searchToggleHangdler = () => {
       setSearchToggle(!searchToggle);
     }
-    const setInputTextHandler = (e) => {
+    const setInputTextHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
       setInputText(e.target.value)
       console.log(inputText)
 
