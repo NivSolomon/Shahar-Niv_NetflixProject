@@ -8,12 +8,28 @@ interface UserInfo {
   username: string;
   // Add more properties as needed
 }
+interface Content {
+  title: { type: string, required: true },
+  description: { type: string, required: true },
+  img: { type: string, required: true },
+  imgTitle: { type: string, required: true },
+  imgThumb: { type: string, required: true },
+  imgVertical: { type: string, required: true },
+  trailerSource: { type: string, required: true },
+  contentSource: { type: string, required: true },
+  duration: { type: string, required: true },
+  year: { type: string, required: true },
+  ageLimit: { type: number, required: true },
+  genre: { type: string, enum: object, required: true },
+  isSeries: { type: boolean, required: true },
+  listNames: { type: [string], enum: object, required: true }
+}
 
 // Define the type for the initial state
 interface InitialStateType {
   userInfo: UserInfo | null;
-  contents: any[] | null; // Assuming contents is an array of some type
-  myList: Array<any> | null;
+  contents: Content[] | null; // Assuming contents is an array of some type
+  myList: Array<Content> | null;
 }
 
 // Create a context for the store
@@ -34,6 +50,7 @@ const contents = userInfo ? getByListNames(userInfo) : null;
 const initialState: InitialStateType = {
   userInfo: userInfo,
   contents: await contents,
+  myList: null
 };
 
 // Define the provider component
