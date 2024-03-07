@@ -53,7 +53,6 @@ const NextArrow: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 };
 
 const PrevArrow: React.FC<{ onClick: () => void }> = ({ onClick }) => {
-const PrevArrow: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     <div className={`${styles.arrow} ${styles.prevArrow}`} onClick={onClick}>
       <span>&#9664;</span>
