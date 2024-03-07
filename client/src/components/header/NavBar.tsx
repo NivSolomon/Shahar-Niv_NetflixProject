@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Store } from '../../store';
-import { USER_SIGNIN, USER_SIGNOUT } from '../../actions'
+import { USER_SIGNOUT } from '../../actions'
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import SearchBoxInput from './SearchBoxInput';
@@ -10,7 +10,7 @@ import SearchBoxInput from './SearchBoxInput';
 
 const Navbar = () => {
 
-    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const {  dispatch: ctxDispatch } = useContext(Store);
     const [searchToggle, setSearchToggle] = useState(false)
     const [inputText, setInputText] = useState("")
     
@@ -19,7 +19,7 @@ const Navbar = () => {
     const searchToggleHangdler = () => {
       setSearchToggle(!searchToggle);
     }
-    const setInputTextHandler = (e) => {
+    const setInputTextHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
       setInputText(e.target.value)
       console.log(inputText)
 

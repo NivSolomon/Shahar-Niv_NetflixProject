@@ -1,6 +1,14 @@
 import axios from 'axios'
 import { useState } from 'react'
 
+interface UserInfo {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  // Add more properties as needed
+}
+
 const SignUp = () => {
 
     const [userInfo, setUserInfo] = useState({})

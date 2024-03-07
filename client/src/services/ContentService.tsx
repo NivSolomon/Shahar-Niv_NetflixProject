@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { useContext } from 'react';
-import { Store } from '../store';
 
+interface UserInfo {
+        id: string;
+        username: string;
+        token: string;
+        // Add more properties as needed
+      }
 
-
-const getAllContents = async(userInfo: any) => {
+const getAllContents = async(userInfo: UserInfo) => {
         const {data} = await axios.get('/api/v1/contents', {
                 headers: { authorization: `Bearer ${userInfo.token}` }
         })
@@ -12,7 +15,7 @@ const getAllContents = async(userInfo: any) => {
         return data;
 }
 
-const getByListNames = async(userInfo) => {
+const getByListNames = async(userInfo: UserInfo) => {
         try{
          const {data} = await axios.get('http://localhost:8080/api/v1/contents/listnames', {
           headers: { authorization: `Bearer ${userInfo.token}` }})

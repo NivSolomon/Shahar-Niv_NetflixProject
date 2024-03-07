@@ -6,6 +6,7 @@ import { getByListNames } from "./services/ContentService";
 interface UserInfo {
   id: string;
   username: string;
+  token: string;
   // Add more properties as needed
 }
 interface Content {
@@ -44,7 +45,7 @@ const userInfo: UserInfo | null = userInfoFromLocalStorage
   : null;
 
 // Define contents using getByListNames if userInfo is available
-const contents = userInfo ? getByListNames(userInfo) : null;
+const contents = userInfo ? getByListNames(userInfo!) : null;
 
 // Define the initial state
 const initialState: InitialStateType = {

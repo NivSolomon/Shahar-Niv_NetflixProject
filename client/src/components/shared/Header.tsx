@@ -1,12 +1,7 @@
-import React, { useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Store } from '../../store';
-import { USER_SIGNIN, USER_SIGNOUT } from '../../actions'
 import Navbar from '../header/NavBar';
 
 const Header = () => {
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
 
   return (
     <header className='header'>

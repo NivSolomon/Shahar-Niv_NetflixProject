@@ -1,6 +1,13 @@
 import { USER_SIGNIN, USER_SIGNOUT } from '../actions.jsx';
 
-const userAuthReducer = (state, action) => {
+interface Action {
+    type: string; // Define the common type property
+    payload?: any; // Define the optional payload property
+    // Add more properties as needed
+  }
+
+
+const userAuthReducer = (state: StateType, action: Action) => {
   
     switch (action.type) {
         case USER_SIGNIN:{

@@ -40,7 +40,7 @@ const SignIn = () => {
   }
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
+      const value: string = e.target.value;
       setEmail(value);
       if (!isValidEmail(value)) {
         setEmailError('Please enter a valid email.');
@@ -49,8 +49,8 @@ const SignIn = () => {
       }
     };
   
-    const handlePasswordChange = (e) => {
-      const value = e.target.value;
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value: string = e.target.value;
       setPassword(value);
       if (!isValidPassword(value)) {
         setPasswordError('Your password must contain between 4 and 60 characters.');

@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
-import ReactPlayer from 'react-player/youtube';
+import  { useState } from 'react';
 import styles from './styles/Card.module.css'
 import CardHover from './CardHover';
 
-const Card = ({ content }) => {
+interface Content {
+  title: { type: string, required: true },
+  description: { type: string, required: true },
+  img: { type: string, required: true },
+  imgTitle: { type: string, required: true },
+  imgThumb: { type: string, required: true },
+  imgVertical: { type: string, required: true },
+  trailerSource: { type: string, required: true },
+  contentSource: { type: string, required: true },
+  duration: { type: string, required: true },
+  year: { type: string, required: true },
+  ageLimit: { type: number, required: true },
+  genre: { type: string, enum: object, required: true },
+  isSeries: { type: boolean, required: true },
+  listNames: { type: [string], enum: object, required: true }
+}
+interface Props {
+  content: Content[]; // Define contents as an array of Content
+}
+
+const Card: React.FC<Props> = ({ content }) => {
   const [isHover, setIsHover] = useState(false);
   const [trailerStarted, setTrailerStarted] = useState(false);
 
