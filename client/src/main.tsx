@@ -6,7 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { StoreProvider } from "./store";
 import axios from 'axios'
 
-// axios.defaults.baseURL = 'http://localhost:8080/';
+const baseURL = import.meta.env.VITE_BASE_URL
+axios.defaults.baseURL = baseURL;
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
