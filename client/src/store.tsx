@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer } from "react";
 import storeReducer from './Reducers/userAuthReducer';
 import { getByListNames } from "./services/ContentService";
 
