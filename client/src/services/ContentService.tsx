@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
+import { IContent } from "../types/interfaces";
 
 const getAllContents = async (userInfo: any) => {
   const { data } = await axios.get("/api/v1/contents", {
@@ -49,7 +50,14 @@ const getMyListHandler = async (userInfo) => {
   }
 };
 
-export { getAllContents, getByListNames, getMyListHandler };
+const getRandomContent = (contents) => {
+  const spreadedContents = contents.flat(1)
+  const randomIndex = Math.floor(Math.random() *spreadedContents.length)
+  console.log(spreadedContents[randomIndex])
+  return spreadedContents[randomIndex];
+}
+
+export { getAllContents, getByListNames, getMyListHandler, getRandomContent };
 
 
 // const getMyListHandler = async(userId: any, token: any) => {

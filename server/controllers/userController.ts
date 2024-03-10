@@ -1,9 +1,10 @@
 import User from '../models/User';
 import bcrypt from 'bcrypt'
 import {generateToken} from '../utils'
+import express from 'express'
 
 
- const signUp = async (req, res) =>{
+ const signUp = async (req: express.Request, res: express.Response) =>{
     const { email, password} = req.body;
     
     if(await User.findOne({ email: email })){
@@ -31,7 +32,7 @@ import {generateToken} from '../utils'
     });
 };
 
- const signIn = async (req, res) =>{
+ const signIn = async (req: express.Request, res: express.Response) =>{
     const {password: passwordFromWebsite, email} = req.body;
     const user = await User.findOne({email: email});
     console.log(user);
@@ -49,7 +50,7 @@ import {generateToken} from '../utils'
     res.status(401).send({message: "Invalid Password/User"});
 }
 
- const getUserById = async (req, res) => {
+ const getUserById = async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
   
     try {
@@ -69,7 +70,7 @@ import {generateToken} from '../utils'
     }
   };
 
-  const getAllUsers = async(req, res) => {
+  const getAllUsers = async(req: express.Request, res: express.Response) => {
     const users = await User.find();
     res.send(users);
   }

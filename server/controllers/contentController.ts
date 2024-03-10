@@ -1,7 +1,8 @@
 import Content from "../models/Content";
 import ListNames from "../Enums/ListNames";
+import express from "express";
 
-const getContentById = async (req, res) => {
+const getContentById = async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
   
     try {
@@ -17,23 +18,23 @@ const getContentById = async (req, res) => {
     }
   };
 
-  const getAllContents = async(req, res) => {
+  const getAllContents = async(req: express.Request, res: express.Response) => {
     const contents = await Content.find();
     console.log(contents);
     res.send(contents);
   }
 
-  const getAllMovies = async(req, res) => {
+  const getAllMovies = async(req: express.Request, res: express.Response) => {
     const movies = await Content.find({isSeries: false});
     res.send(movies);
   }
 
-  const getAllSerieses = async(req, res) => {
+  const getAllSerieses = async(req: express.Request, res: express.Response) => {
     const serieses = await Content.find({isSeries: true});
     res.send(serieses);
   }
 
-  const getByListName = async (req, res) => {
+  const getByListName = async (req: express.Request, res: express.Response) => {
 
     const contents = await Content.find();
 

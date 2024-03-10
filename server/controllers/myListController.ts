@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Content from "../models/Content";
 import User from "../models/User";
 import { getUserById } from "./userController";
+import express from "express";
 
 // TODO:
 const getAllList = async (req, res) => {

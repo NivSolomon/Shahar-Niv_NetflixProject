@@ -1,10 +1,17 @@
 import jwt from 'jsonwebtoken';
+import express from 'express';
 
-const generateToken = ({_id, name, email}) => {
+interface IGenerateTokenParameters {
+  _id: object;
+  name: string;
+  email: string;
+}
+
+const generateToken = ({_id, name, email}: IGenerateTokenParameters) => {
     return jwt.sign({_id: _id, name: name, email: email}, process.env.JWT_PW, {expiresIn: '7d'});
 }
 
-const isAuth = async (req, res, next) => {
+const isAuth = async (req, res: express.Response, next) => {
     const auth = req.headers.authorization
     console.log("Token: ",auth);
     if (auth) {

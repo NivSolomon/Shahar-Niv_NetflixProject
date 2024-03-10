@@ -22,6 +22,7 @@ const CardHover = ({ isHover, content, isExistsInMyList }) => {
     <div className={styles.cardContainer}>
 
     <ReactPlayer
+        className="pointer-events-none"
         url={content.trailerSource}
         playing={isHover ? true : false} 
         controls={false}
