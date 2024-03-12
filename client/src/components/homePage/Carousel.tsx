@@ -19,7 +19,6 @@ const Carousel : React.FC<{ contents: IContent[] }> = ({ contents }) => {
     prevArrow: <PrevArrow />,
   };
 
-  const [isExistsInMyList, setIsExistsInMyList] = useState<boolean>(false);
 
   useEffect(() => {
    console.log("contents in carousel: ", contents);
@@ -33,8 +32,7 @@ const Carousel : React.FC<{ contents: IContent[] }> = ({ contents }) => {
       {Array.isArray(contents) && // Check if contents is an array
         contents.map(content => (
           <div key={content._id} className={styles.carouselItem}>
-            <Card content={content}
-             isExistsInMyList={isExistsInMyList}/>
+            <Card content={content}/>
           </div>
         ))}
     </Slider>

@@ -7,14 +7,12 @@ import express from "express";
 // TODO:
 const getAllList = async (req, res) => {
     const userId = req.body._id;
-    console.log(userId);
     try {
         const user = await User.findOne({_id: userId}).populate('myList');
         if (!user) {
             return res.status(404).send('User not found');
         }
         const contentsList = user.myList;
-        console.log(contentsList);
         res.status(200).send(contentsList);
     } catch (error) {
         console.error('Error:', error);
@@ -23,10 +21,19 @@ const getAllList = async (req, res) => {
 }
 
 
+const SaveMyList = async (req, res) => {
 
+    console.log("body: ",req.body);
+    const { myList, userId } = req.body;
 
-const addNewContent = () => {
-
+    try {
+        const user = await User.findOne({_id: userId})
+        user.myList = [...myList];
+        await user.save();
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(404).send('Internal Server Error');
+    }
 }
 
-export {getAllList, addNewContent}
+export {getAllList, SaveMyList}

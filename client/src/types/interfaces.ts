@@ -23,4 +23,8 @@ interface IUserInfo {
     email: { type: string },
 }
 
-export type { IContent, IUserInfo }
+interface IMyList {
+    myList: IContent[];
+  }
+
+export type { IContent, IUserInfo, IMyList }

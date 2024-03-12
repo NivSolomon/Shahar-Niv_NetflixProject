@@ -1,12 +1,14 @@
+import { useLocation } from 'react-router-dom';
 import Navbar from '../header/NavBar';
 
 const Header = () => {
 
   // const { state, dispatch: ctxDispatch } = useContext(Store);
+  const location = window.location.pathname;
 
   return (
     <header className='header'>
-      {localStorage.getItem('userInfo') === null?
+      {localStorage.getItem('userInfo') === null || location === "/watch"?
       null:
       <Navbar/>
        }
