@@ -12,11 +12,12 @@ const Carousel : React.FC<{ contents: IContent[] }> = ({ contents }) => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 6,
     slidesToScroll: 6,
     nextArrow: <NextArrow /> ,
     prevArrow: <PrevArrow />,
+    
   };
 
 

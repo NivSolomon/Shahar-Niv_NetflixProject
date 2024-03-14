@@ -32,7 +32,7 @@ const Home = () => {
      <div className="carouselsContainer">
          {contents && Object.entries(contents).map(([key, value]) => (
         <div key={key}>
-          <h3 className="text-2xl relative">{key}</h3>
+          <h3 className="text-2xl relative ml-5">{key}</h3>
           <Carousel contents={value} />
         </div>
       ))}

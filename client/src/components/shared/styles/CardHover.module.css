@@ -1,14 +1,21 @@
 .cardContainer {
-  border: 1px solid #ccc;
+  border: 5px solid rgba(128, 128, 128, 0.2); /* Grey border with opacity */
+  border-radius: 10px;
+  box-shadow: 5 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  background-color: grey;
+  background-color: black;
    /* Increase padding to provide more space for content */
   margin-bottom: 50px;
   position: absolute;
   top: 50%;
   left: 50%; /* Center the card horizontally */
   transform: translate(-50%, -50%); 
-  transition: transform 2s ease;
+  transition: transform 0.5s ease;
+
+}
+
+.cardContainer:hover {
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
 .react-player {

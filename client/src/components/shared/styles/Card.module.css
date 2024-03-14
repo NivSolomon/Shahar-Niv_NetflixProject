@@ -4,7 +4,9 @@
     width: 15.2em;
     height: 7.6em;
     transition: width 0.2s ease, height 0.2s ease; /* Added border-color to the transition */
-  
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   
