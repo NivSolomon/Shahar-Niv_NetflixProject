@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { USER_SIGNIN } from '../actions'
 import { useDispatch } from 'react-redux';
+import style from "./styles/SignIn.module.css"
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -47,7 +48,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className='sign-in-container'>
+    // sign-in-container
+    <div className={style.signInContainer}>
       <div className='card'>
         <h1 className='signInTitle'>Sign In:</h1>
         <div className="relative mt-5">

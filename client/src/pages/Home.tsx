@@ -15,17 +15,24 @@ const Home = () => {
   useEffect(() => {
     contents && setRandomContent(getRandomContent(Object.values(contents)));
   }, [contents])
+
+  
   
   return (
    <>
-     {randomContent&&<Billboard randomContent={randomContent}/>} 
-      {contents && Object.entries(contents).map(([key, value]) => (
+     {randomContent&&<div className="z-10">
+      <Billboard randomContent={randomContent}/>
+     </div> } 
+     <div className="carouselsContainer">
+         {contents && Object.entries(contents).map(([key, value]) => (
         <div key={key}>
-          <h3>{key}</h3>
+          <h3 className="text-2xl">{key}</h3>
           <Carousel contents={value} />
         </div>
       ))}
       {!contents && <h1>Loading...</h1>}
+     </div>
+   
     </>
   );
   

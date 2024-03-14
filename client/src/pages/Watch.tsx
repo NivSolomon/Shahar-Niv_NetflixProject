@@ -23,12 +23,12 @@ const Watch = () => {
   }, [contentId]);
 
   return (
-    <div className="watchContainer">
+    <div className="watchContainer w-full h-full md:w-96 md:h-54 lg:w-128 lg:h-72 xl:w-160 xl:h-90 bg-gray-900 rounded-lg overflow-hidden">
       <button onClick={() => navigate(-1)}>
         <IoArrowBack className="backBtn" />
       </button>
       {content && (
-        <div className="videoContainer">
+        <div className="videoContainer w-full h-full object-cover">
           <ReactPlayer 
             url={content.contentSource}
             playing={true}

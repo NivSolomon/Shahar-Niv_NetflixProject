@@ -4,6 +4,7 @@ import {
   SAVE_MY_LIST_IN_DB,
   SET_MY_LIST,
 } from "../actions";
+import { saveMyList } from "../services/ContentService";
 import { IContent, IMyList } from "../types/interfaces";
 
 
@@ -35,6 +36,9 @@ const myListReducer = (state = initialState, action) => {
       };
 
     case SAVE_MY_LIST_IN_DB:
+      saveMyList(action.payload, state.myList);    
+      console.log(action.payload)
+      console.log(state.myList)
       return state;
 
     default:

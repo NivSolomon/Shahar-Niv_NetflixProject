@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useContext } from "react";
-import { IContent } from "../types/interfaces";
+import { IContent, IUserInfo } from "../types/interfaces";
 import { useSelector } from "react-redux";
+import { userInfo } from "os";
 
-const getAllContents = async (userInfo: any) => {
+const getAllContents = async (userInfo: IUserInfo) => {
   const { data } = await axios.get("/api/v1/contents", {
     headers: { authorization: `Bearer ${userInfo.token}` },
   });
-  // console.log(data);
+  console.log(data);
   return data;
 };
 
@@ -15,8 +16,19 @@ const getContentById = async (userInfo, contentId) => {
   const data = await getAllContents(userInfo)
   const contentIndex = data.findIndex(content => content._id === contentId);
   const content = data[contentIndex];
-  console.log(content);
   return content;
+}
+
+const getAllMovies = async (userInfo: IUserInfo) => {
+  const data = await getAllContents(userInfo);
+  const allMovies = data.filter(content => content.isSeries === false);
+  return allMovies;
+}
+
+const getAllSeries = async (userInfo: IUserInfo) => {
+  const data = await getAllContents(userInfo);
+  const allSeries = data.filter(content => content.isSeries === true);
+  return allSeries;
 }
 
 const getByListNames = async (userInfo) => {
@@ -90,5 +102,5 @@ const saveMyList = async (userInfo, list) => {
   }
 };
 
-export { getAllContents, getByListNames, getMyListHandler, getRandomContent, saveMyList, getContentById};
+export { getAllContents, getByListNames, getMyListHandler, getRandomContent, saveMyList, getContentById, getAllMovies, getAllSeries};
 

@@ -25,7 +25,7 @@ const SaveMyList = async (req, res) => {
 
     console.log("body: ",req.body);
     const { myList, userId } = req.body;
-
+    console.log("myList: ",myList)
     try {
         const user = await User.findOne({_id: userId})
         user.myList = [...myList];

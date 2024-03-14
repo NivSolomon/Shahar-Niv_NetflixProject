@@ -9,12 +9,13 @@ const initialState = {
 const userAuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_SIGNIN:
-      localStorage.setItem('userInfo', JSON.stringify(action.payload))
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
       return {
         ...state,
         userInfo: action.payload,
       };
     case USER_SIGNOUT:
+      localStorage.removeItem('userInfo');
       return {
         ...state,
         userInfo: null,

@@ -1,0 +1,145 @@
+/* styles.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding-left: 0.75rem;
+}
+
+@media (min-width: 400px) {
+  .container {
+    width: 10em;
+    margin-top: 8rem;
+    margin-left: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .description{
+    display: 10%;
+  }
+  .image {
+    width: 25rem;
+    z-index: 70;
+  }
+  .button {
+    height: 2.6em;
+  }
+}
+@media (min-width: 640px) {
+  .container {
+    width: 13em;
+    margin-top: 8rem;
+    margin-left: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .image {
+    width: 25rem;
+    z-index: 70;
+  }
+  .button {
+    height: 2.6em;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 15em;
+    margin-top: 13rem;
+    margin-left: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+    .container {
+      width: 20em;
+      margin-top: 23rem;
+      margin-left: 4rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+  }
+  .image {
+    width: 25rem;
+    z-index: 70;
+   
+  }
+
+
+
+}
+
+@media (min-width: 1536px) {
+  .container {
+    padding-left: 7rem;
+    
+  }
+}
+
+
+
+.description {
+  width: 50%;
+}
+
+@media (min-width: 640px) {
+  .description {
+    width: 100%;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.button:hover {
+  filter: brightness(90%);
+}
+
+.play {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  width: 5em;
+  display: flex;
+  align-items: center;
+}
+
+.play:hover {
+  background-color: #2563eb;
+}
+
+.moreInfo {
+  background-color: #6b7280;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.moreInfo:hover {
+  background-color: #4b5563;
+}

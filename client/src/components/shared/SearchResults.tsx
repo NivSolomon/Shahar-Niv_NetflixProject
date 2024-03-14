@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import Card from "./Card";
 import { useSelector } from "react-redux";
 import { userInfo } from "os";
+import style from "./styles/SearchResults.module.css";
 
 const SearchResults = () => {
   const { search } = useLocation();
@@ -44,7 +45,7 @@ const SearchResults = () => {
   }, [query, contents]);
 
   return (
-    <div>
+    <div className={style.resultsTitle}> 
       <h1>Showing results for: "{query}"</h1>
       <div className="grid-container">
         {filterContents &&

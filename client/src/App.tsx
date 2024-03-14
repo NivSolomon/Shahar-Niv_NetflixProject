@@ -10,8 +10,10 @@ import { getByListNames, getMyListHandler } from "./services/ContentService";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import MyList from "./pages/MyList";
-import { SET_MY_LIST } from "./actions";
+import { SAVE_MY_LIST_IN_DB, SET_MY_LIST } from "./actions";
 import Watch from "./pages/Watch";
+import Movies from "./pages/Movies";
+import Series from "./pages/Series";
 
 function App() {
   // const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -46,6 +48,14 @@ function App() {
   }, [userInfo]);
 
 
+
+//   useEffect(() => {
+//     return () => {
+//       console.log(myList);
+//      dispatch({type: SAVE_MY_LIST_IN_DB, payload: {userInfo: userInfo, myList: myList  }});
+//     }
+//  }, [])
+
 //   useEffect(()=>{
 //     const { _id, token } = userInfo;
 
@@ -77,7 +87,10 @@ function App() {
 
   return (
     <>
-      <Header />
+    <div className="">
+        <Header />
+    </div>
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
@@ -85,6 +98,8 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/my-list" element={<MyList />} />
         <Route path="/watch" element={<Watch/>} />
+        <Route path="/movies" element={<Movies/>} />
+        <Route path="/series" element={<Series/>} />
       </Routes>
       <Footer />
     </>

@@ -31,7 +31,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url("https://th.bing.com/th/id/R.d2edb29f3f970c36aadecbb01ed0bb79?rik=R3kpjN8UZI%2fsww&pid=ImgRaw&r=0");
+  background-color: (86,77,77);
 }
 
 #Netflix-logo {
@@ -75,11 +75,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
-.sign-in-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .card{
   background-color: rgba(0, 0, 0, 0.8); /* Use rgba to set opacity */
@@ -369,4 +365,13 @@ height: 7em;
   z-index: 3;
   margin-left: 3em;
   margin-top: 5em;
+}
+
+.nav-gradient {
+  background: rgb(2,0,36);
+background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(0,0,0,1) 100%);
+}
+
+.carouselsContainer{
+  margin-top: -8em;
 }

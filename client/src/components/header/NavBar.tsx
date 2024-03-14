@@ -28,21 +28,26 @@ const Navbar = () => {
     useEffect(()=>{
       if(searchToggle === true)
       navigate(`/search?=${inputText}`);
+    
+      if(inputText === ""){
+        navigate("/");
+      }
     },[inputText])
 
   return (
-    <nav className="navbar">
+    <nav className="navbar nav-gradient z-10 fixed w-full">
       <div className="navbar__logo">
         <img
           className="navbar__logoImg"
           src="Netflix_logo.svg"
           alt="Netflix Logo"
+          onClick={() => navigate('/')}
         />
       </div>
       <div className="navbar__links">
         <Link to="/" className="navbar__link">Home</Link>
         <Link to="/movies" className="navbar__link">Movies</Link>
-        <Link to="/tv-shows" className="navbar__link">TV Shows</Link>
+        <Link to="/series" className="navbar__link">TV Shows</Link>
         <Link to="/my-list" className="navbar__link">My List</Link>
       </div>
       <div className='navbar__icons'>
