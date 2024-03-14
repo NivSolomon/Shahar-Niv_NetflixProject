@@ -42,7 +42,7 @@ const SearchResults = () => {
     } else {
       setFilterContents([]);
     }
-  }, [query, contents]);
+  }, [query, contents, mergedArray]);
 
   return (
     <div className={style.resultsTitle}> 

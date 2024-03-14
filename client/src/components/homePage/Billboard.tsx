@@ -12,13 +12,13 @@ interface Props {
 
 const Billboard: React.FC<Props> = ({randomContent}) => {
   return (
-    <div className='relative h-[56.35vw]'>
+    <div className='relative h-[56.25vw]'>
        <ReactPlayer
-       className="pointer-events-none z-10"
+       className="pointer-events-none z-2"
         url={randomContent.trailerSource}
         playing={true} 
         controls={false}
-        height="80%"
+        height="100%"
         width="100%"
         loop={true} 
         muted={true} 
@@ -27,7 +27,7 @@ const Billboard: React.FC<Props> = ({randomContent}) => {
      <div className={style.container}>
       <img src={randomContent.imgTitle} className={style.image} alt="Random" />
       <p className={style.description}>
-        {randomContent.description.substring(0, 100)}...
+        {randomContent.description.substring(0, 200)}...
       </p>
       <div className={style.buttons}>
         <button className={`${style.button} ${style.play}`}><FaPlay />Play</button>

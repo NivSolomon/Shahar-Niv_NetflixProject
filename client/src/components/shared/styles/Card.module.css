@@ -7,6 +7,75 @@
   
   }
   
+  
+@media (max-width: 1450px) {
+  .cardContainer {
+    position: relative;
+    width: 12em;
+    height: 6em;
+    transition: width 0.2s ease, height 0.2s ease;
+  
+  }
+  
+}
+
+@media (max-width: 1150px) {
+  .cardContainer {
+    position: relative;
+    width: 10em;
+    height: 5em;
+    transition: width 0.2s ease, height 0.2s ease;
+  
+  }
+  
+}
+
+
+@media (max-width: 970px) {
+  .cardContainer {
+    position: relative;
+    width: 8em;
+    height: 4em;
+    transition: width 0.2s ease, height 0.2s ease;
+  
+  }
+  
+}
+
+
+@media (max-width: 765px) {
+  .cardContainer {
+    position: relative;
+    width: 6em;
+    height: 3em;
+    transition: width 0.2s ease, height 0.2s ease;
+  
+  }
+  
+}
+
+@media (max-width: 580px) {
+  .cardContainer {
+    position: relative;
+    width: 5em;
+    height: 2.5em;
+    transition: width 0.2s ease, height 0.2s ease;
+  
+  }
+  
+}
+
+@media (max-width: 470px) {
+  .cardContainer {
+    position: relative;
+    width: 4em;
+    height: 2em;
+    transition: width 0.2s ease, height 0.2s ease;
+  
+  }
+  
+}
+  
   /* .cardContainer:hover {
     border: 1px solid #ccc;
     width: 17em;

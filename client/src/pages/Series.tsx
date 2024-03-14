@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { getAllSeries } from '../services/ContentService'
+import { getAllContents, getAllSeries, getRandomContent } from '../services/ContentService'
 import Carousel from '../components/homePage/Carousel'
 import useUserInfo from '../hooks/useUserInfo'
+import Billboard from '../components/homePage/Billboard'
 
 
 const Series = () => {
 
     const userInfo = useUserInfo();
     const [allSeries, setAllSeries] = useState([])
+    const [randomContent, setRandomContent] = useState();
+
+    useEffect(() => {
+      allSeries && setRandomContent(getRandomContent(allSeries));
+    }, [allSeries])
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +27,11 @@ const Series = () => {
     }, [])
 
   return (
-    <div>Movies
+    <div>
+               {randomContent&&<div className="z-10">
+      <Billboard randomContent={randomContent}/>
+     </div> } 
+
 
            <Carousel contents={allSeries} />
     </div>

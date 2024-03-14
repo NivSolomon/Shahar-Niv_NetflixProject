@@ -18,16 +18,27 @@ const MyList = () => {
   return (
     <div>
       MyList:
-
+    <div className="grid-container-mylist">
       {myListContents && myListContents.map((content) => (
-        <div>
+        <div className="grid-item-mylist">
           {
             <Card content={content}/>
           }
         </div>
       ))}
+      </div>
     </div>
   );
 };
 
 export default MyList;
+
+
+{/* <div className="grid-container">
+{filterContents &&
+  filterContents.map((content) => (
+    <div className="grid-item">
+      <Card content={content} />
+    </div>
+  ))}
+</div> */}

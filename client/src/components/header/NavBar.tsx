@@ -16,7 +16,7 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const searchToggleHangdler = () => {
+    const searchToggleHandler = () => {
       setSearchToggle(!searchToggle);
     }
     const setInputTextHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -26,12 +26,17 @@ const Navbar = () => {
     }
 
     useEffect(()=>{
-      if(searchToggle === true)
-      navigate(`/search?=${inputText}`);
+      console.log(inputText);
+      if(searchToggle === true){
+      navigate(`/search?=${inputText}`)
+      }
+      console.log(inputText);
     
       if(inputText === ""){
         navigate("/");
       }
+
+      
     },[inputText])
 
   return (
@@ -53,7 +58,7 @@ const Navbar = () => {
       <div className='navbar__icons'>
          {
           searchToggle?  <div>
-                         <SearchBoxInput setSearchToggle={searchToggleHangdler} setInputText={setInputTextHandler} inputText={inputText}/>
+                         <SearchBoxInput setSearchToggle={searchToggleHandler} setInputText={setInputTextHandler} inputText={inputText}/>
                          </div>
                          : <BsSearch onClick={()=>{setSearchToggle(!searchToggle)}} className='navbar__icon'/>
 
@@ -64,7 +69,7 @@ const Navbar = () => {
 
          }
          <IoMdNotificationsOutline className='navbar__icon'/>
-         <Link to={'/signin'} className='navbar__icon'><button onClick={()=>dispatch({type: USER_SIGNOUT})}>Sign Out</button></Link>      
+         <Link to={'/signin'} className='signOutBtn'><button onClick={()=>dispatch({type: USER_SIGNOUT})}>Sign Out</button></Link>      
       </div>
     </nav>
         

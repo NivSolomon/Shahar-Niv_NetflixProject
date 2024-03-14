@@ -89,7 +89,7 @@ const SignIn = () => {
           </div>
         )}
         <br />
-        <button className='loginBtn w-60' type='submit' onClick={onSubmitHandler}>Login</button>
+        <button className='loginBtn w-60 py-2 hover:bg-red-800' type='submit' onClick={onSubmitHandler}>Login</button>
         <h3><span className='firstTimeUsing'>First time using Netflix?</span><Link className='link' to={'/signup'}>Create an account</Link></h3>
       </div>
     </div>

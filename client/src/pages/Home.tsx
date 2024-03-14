@@ -5,18 +5,24 @@ import { RootState } from '../store';
 import Billboard from "../components/homePage/Billboard";
 import { useEffect, useState } from "react";
 import { getRandomContent } from "../services/ContentService";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   // const navigate = useNavigate(); // Redirect user to sign in 
   const contents = useSelector((state : RootState ) => state.contents.contents);
   const userInfo = useSelector((state : RootState ) => state.userAuth.userInfo);
   const [randomContent, setRandomContent] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     contents && setRandomContent(getRandomContent(Object.values(contents)));
   }, [contents])
 
-  
+  useEffect(() => {
+   if(!userInfo) {
+     navigate("/signin")
+   }
+  }, [userInfo])
   
   return (
    <>
@@ -26,7 +32,7 @@ const Home = () => {
      <div className="carouselsContainer">
          {contents && Object.entries(contents).map(([key, value]) => (
         <div key={key}>
-          <h3 className="text-2xl">{key}</h3>
+          <h3 className="text-2xl relative">{key}</h3>
           <Carousel contents={value} />
         </div>
       ))}
