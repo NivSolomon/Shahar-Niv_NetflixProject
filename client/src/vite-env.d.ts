@@ -1,1 +1,1 @@
-/// <reference types="vite/client" />
+VITE_BASE_URL="shahar-niv-netflix-project-9134afpml-niv-solomons-projects.vercel.app"
