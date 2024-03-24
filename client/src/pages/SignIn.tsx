@@ -32,7 +32,7 @@ const SignIn = () => {
 
   const onSubmitHandler = async () => {
     try {
-      const { data } = await axios.post('/api/v1/users/signin', {
+      const { data } = await axios.post('api/v1/users/signin', {
         email: email,
         password: password
       });

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { userInfo } from "os";
 
 const getAllContents = async (userInfo: IUserInfo) => {
-  const { data } = await axios.get("/api/v1/contents", {
+  const { data } = await axios.get("api/v1/contents", {
     headers: { authorization: `Bearer ${userInfo.token}` },
   });
   console.log(data);
@@ -34,7 +34,7 @@ const getAllSeries = async (userInfo: IUserInfo) => {
 const getByListNames = async (userInfo) => {
   console.log("User info from getByListNames: ", userInfo);
   try {
-    const { data } = await axios.get("/api/v1/contents/listnames", {
+    const { data } = await axios.get("api/v1/contents/listnames", {
       headers: { authorization: `Bearer ${userInfo.token}` },
     });
     console.log("getByListNames Function:", data);
@@ -50,7 +50,7 @@ const getMyListHandler = async (userInfo) => {
     const { _id, token } = userInfo;
     console.log(`Id: ${_id}, token: ${token}`);
     const { data } = await axios.post(
-      "/api/v1/mylist",
+      "api/v1/mylist",
       {
         _id,
       },
@@ -85,7 +85,7 @@ const saveMyList = async (userInfo, list) => {
   try {
     console.log(list);
     await axios.post(
-      "/api/v1/myList/savelist",
+      "api/v1/myList/savelist",
       {
         userId: _id,
         myList: list,
