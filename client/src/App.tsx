@@ -28,7 +28,7 @@ function App() {
       try {
         if (userInfo) {
           const { data } = await axios.get(
-            "http://localhost:8080/api/v1/contents/listnames",
+            "/api/v1/contents/listnames",
             {
               headers: { authorization: `Bearer ${userInfo.token}` },
             }

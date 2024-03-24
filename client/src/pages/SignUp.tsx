@@ -22,7 +22,7 @@ const navigate = useNavigate();
 
        if(currentStep === 'password') {
         try{
-        const { data } = await axios.post('http://localhost:8080/api/v1/users/signup', {
+        const { data } = await axios.post('/api/v1/users/signup', {
             email: userInfo?.email,
             password: userInfo?.password
         })

@@ -13,33 +13,30 @@ const getAllContents = async (userInfo: IUserInfo) => {
 };
 
 const getContentById = async (userInfo, contentId) => {
-  const data = await getAllContents(userInfo)
-  const contentIndex = data.findIndex(content => content._id === contentId);
+  const data = await getAllContents(userInfo);
+  const contentIndex = data.findIndex((content) => content._id === contentId);
   const content = data[contentIndex];
   return content;
-}
+};
 
 const getAllMovies = async (userInfo: IUserInfo) => {
   const data = await getAllContents(userInfo);
-  const allMovies = data.filter(content => content.isSeries === false);
+  const allMovies = data.filter((content) => content.isSeries === false);
   return allMovies;
-}
+};
 
 const getAllSeries = async (userInfo: IUserInfo) => {
   const data = await getAllContents(userInfo);
-  const allSeries = data.filter(content => content.isSeries === true);
+  const allSeries = data.filter((content) => content.isSeries === true);
   return allSeries;
-}
+};
 
 const getByListNames = async (userInfo) => {
   console.log("User info from getByListNames: ", userInfo);
   try {
-    const { data } = await axios.get(
-      "http://localhost:8080/api/v1/contents/listnames",
-      {
-        headers: { authorization: `Bearer ${userInfo.token}` },
-      }
-    );
+    const { data } = await axios.get("/api/v1/contents/listnames", {
+      headers: { authorization: `Bearer ${userInfo.token}` },
+    });
     console.log("getByListNames Function:", data);
     // setContents(data);
     return data;
@@ -53,7 +50,7 @@ const getMyListHandler = async (userInfo) => {
     const { _id, token } = userInfo;
     console.log(`Id: ${_id}, token: ${token}`);
     const { data } = await axios.post(
-      "http://localhost:8080/api/v1/mylist",
+      "/api/v1/mylist",
       {
         _id,
       },
@@ -88,7 +85,7 @@ const saveMyList = async (userInfo, list) => {
   try {
     console.log(list);
     await axios.post(
-      "http://localhost:8080/api/v1/myList/savelist",
+      "/api/v1/myList/savelist",
       {
         userId: _id,
         myList: list,
@@ -102,5 +99,13 @@ const saveMyList = async (userInfo, list) => {
   }
 };
 
-export { getAllContents, getByListNames, getMyListHandler, getRandomContent, saveMyList, getContentById, getAllMovies, getAllSeries};
-
+export {
+  getAllContents,
+  getByListNames,
+  getMyListHandler,
+  getRandomContent,
+  saveMyList,
+  getContentById,
+  getAllMovies,
+  getAllSeries,
+};
