@@ -17,7 +17,6 @@ const MyList = () => {
 
   return (
     <div>
-      MyList:
     <div className="grid-container-mylist">
       {myListContents && myListContents.map((content) => (
         <div className="grid-item-mylist">
