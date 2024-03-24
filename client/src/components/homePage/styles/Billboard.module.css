@@ -9,16 +9,7 @@
    position: absolute;
 }
 
-/* .container {
-  
-
-  top: 0;
-  left: 0;
-  align-items: center;
-  padding-left: 0.75rem;
-} */
-
-@media (min-width: 600px) {
+@media (min-width: 500px) {
   .container {
     width: 35em;
     display: flex;
@@ -72,12 +63,13 @@
     align-items: flex-start;    padding-left: 0.75rem;
   }
   .image {
-    width: 30rem;
+    width: 20rem;
     z-index: 70;
   }
   .button {
     height: 2.6em;
   }
+
 }
 
 @media (min-width: 1024px) {

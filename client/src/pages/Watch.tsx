@@ -4,6 +4,8 @@ import { getContentById } from "../services/ContentService";
 import { useSelector } from "react-redux";
 import ReactPlayer from "react-player";
 import { IoArrowBack } from "react-icons/io5";
+// import { BiArrowBack } from "react-icons/bi";
+
 
 const Watch = () => {
   const { search } = useLocation();
@@ -12,6 +14,8 @@ const Watch = () => {
   const userInfo = useSelector((state) => state.userAuth.userInfo);
 
   const [content, setContent] = useState();
+  // const [backArrowOpacity, setBackArrowOpacity] = useState(0);
+  // const [animationDuration, setAnimationDuration] = useState(0);
 
   const navigate = useNavigate();
 
@@ -22,18 +26,33 @@ const Watch = () => {
     fetchContent();
   }, [contentId]);
 
+  // const handleMouseEnter = () => {
+  //   setBackArrowOpacity(100);
+  //   setAnimationDuration(0);
+  // };
+
+  // const handleMouseLeave = () => {
+  //   setBackArrowOpacity(0);
+  //   setAnimationDuration(0);
+  // };
+
   return (
-    <div className="watchContainer w-full h-full md:w-96 md:h-54 lg:w-128 lg:h-72 xl:w-160 xl:h-90 bg-gray-900 rounded-lg overflow-hidden">
+    <div className="relative">
       <button onClick={() => navigate(-1)}>
         <IoArrowBack className="backBtn" />
+        {/* <BiArrowBack
+        size={25}
+        onClick={() => navigate(-1)}
+        className={`absolute left-0 top-0 cursor-pointer text-white my-20 mx-6 transition duration-0 ease-in-out opacity-${backArrowOpacity}`}
+      /> */}
       </button>
       {content && (
-        <div className="videoContainer w-full h-full object-cover">
-          <ReactPlayer 
+        <div style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}>
+        <ReactPlayer 
             url={content.contentSource}
             playing={true}
             controls={true}
-            height="60%"
+            height="100%"
             width="100%"
             loop={true}
           />

@@ -46,43 +46,6 @@ function App() {
     fetchData();
     
   }, [userInfo]);
-
-
-
-//   useEffect(() => {
-//     return () => {
-//       console.log(myList);
-//      dispatch({type: SAVE_MY_LIST_IN_DB, payload: {userInfo: userInfo, myList: myList  }});
-//     }
-//  }, [])
-
-//   useEffect(()=>{
-//     const { _id, token } = userInfo;
-
-//     const finalizerFunc = async () => {
-//       try {
-//         console.log(myList);
-//         await axios.post(
-//           "http://localhost:8080/api/v1/myList/savelist",
-//           {
-//             userId: _id,
-//             myList: myList,
-//           },
-//           {
-//             headers: { authorization: `Bearer ${token}` },
-//           }
-//         );
-//       } catch (err) {
-//         console.error("Error in finalizerFunc:", err);
-//       }
-//     };
-      
-//     return async () => {
-//       if(myList.length !== 0) {
-//         await finalizerFunc();
-//       }
-//     };
-// }, [myList]);
   
 
   return (

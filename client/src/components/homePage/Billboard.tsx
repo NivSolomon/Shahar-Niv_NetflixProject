@@ -4,6 +4,7 @@ import { IContent } from '../../types/interfaces'
 import style from './styles/Billboard.module.css'
 import { CiCircleInfo } from "react-icons/ci";
 import { FaPlay } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const Billboard: React.FC<Props> = ({randomContent}) => {
+  const navigate = useNavigate();
+
   return (
     <div className='relative h-[56.25vw]'>
        <ReactPlayer
@@ -27,10 +30,10 @@ const Billboard: React.FC<Props> = ({randomContent}) => {
      <div className={style.container}>
       <img src={randomContent.imgTitle} className={style.image} alt="Random" />
       <p className={style.description}>
-        {randomContent.description.substring(0, 200)}...
+        {randomContent.description.substring(0, 160)}...
       </p>
       <div className={style.buttons}>
-        <button className={`${style.button} ${style.play}`}><FaPlay />Play</button>
+        <button className={`${style.button} ${style.play}`} onClick={()=>navigate(`/watch?=${randomContent._id}`)}><FaPlay />Play</button>
         <button className={`${style.button} ${style.moreInfo}`}><CiCircleInfo /> More Info</button>
       </div>
 
