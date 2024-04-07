@@ -8,6 +8,13 @@ import { ADD_CONTENT_TO_MY_LIST, REMOVE_CONTENT_FROM_MY_LIST, SAVE_MY_LIST_IN_DB
 import { IContent, IMyList, IUserInfo } from '../../types/interfaces';
 import { saveMyList } from '../../services/ContentService';
 import { useNavigate } from 'react-router-dom';
+import MoreInfoBtn from '../buttons/MoreInfoBtn';
+import MoreInfoDialog from './MoreInfoDialog';
+import { FaMinus } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
+import { FaChevronDown } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa6";
+
 
 type CardProps = {
 isHover: boolean,
@@ -25,6 +32,14 @@ const CardHover = ({ isHover, content } : CardProps)  => {
   const myListContents = useSelector((state: IMyList[]) => state.myList.myList)
   const userInfo = useSelector((state: UserState) => state.userAuth.userInfo);
   const navigate = useNavigate();
+  const [isInfoBoxOpen, setisInfoBoxOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setisInfoBoxOpen(true);
+  };
+  const handleClose = () => {
+    setisInfoBoxOpen(false);
+  };
 
   const dispatch = useDispatch();
 
@@ -62,19 +77,15 @@ const CardHover = ({ isHover, content } : CardProps)  => {
         muted={true}    
       /> 
       <div className={styles.buttonsContainer}>
-      <button onClick={()=>navigate(`/watch?=${content._id}`)}><BsFillPlayFill size={25}/></button>
+      <button className='text-black bg-white rounded-full p-2' onClick={()=>navigate(`/watch?=${content._id}`)}><FaPlay /></button>
       {isExist === true ?
-         <button onClick={removeButtonHandler}>-</button>
-       :  <button onClick={addButtonHandler}>+</button>}
+        <button className='text-black bg-white rounded-full p-2' onClick={removeButtonHandler}><FaMinus /></button>
+: <button className='text-black bg-white rounded-full p-2' onClick={addButtonHandler}><FaPlus /></button>}
+       <button className='text-black bg-white rounded-full p-2' onClick={()=>setisInfoBoxOpen(true)}><FaChevronDown /></button>
       </div>
-      <p>
-       <span className={styles.matchPercent}>95% Match</span> {content.duration}
-      </p>
-      <p>
-        { content.genre }
-      </p>
+      <h2>{content.title}</h2>
     </div>
-        
+    {isInfoBoxOpen? <MoreInfoDialog content={content} isOpen={handleClickOpen } onClose={handleClose}/>: null}
     </>
   )
 }

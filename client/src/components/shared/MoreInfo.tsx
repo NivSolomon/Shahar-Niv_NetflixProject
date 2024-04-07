@@ -1,15 +1,15 @@
 import ReactPlayer from "react-player";
 import { IoCloseOutline } from "react-icons/io5";
 
-const MoreInfo = ({ content, setisInfoBoxOpen }) => {
+const MoreInfo = ({ content, setIsOpen  }) => {
   return (
-    <div className="absolute flex-col border-2 rounded-md pb-5 ml-96 w-5/6 bg-black z-50">
+    <div>
       <button
         onClick={() => {
-          setisInfoBoxOpen();
+          setIsOpen(false);
         }}
       >
-        <IoCloseOutline className=" absolute border h-7 w-7 justify-self-end ml-96 rounded-md" />
+        {/* <IoCloseOutline className=" absolute border h-7 w-7 justify-self-end ml-96 rounded-md" /> */}
       </button>
       <div className="aspect-[16/9]">
         <ReactPlayer
@@ -25,11 +25,11 @@ const MoreInfo = ({ content, setisInfoBoxOpen }) => {
       </div>
 
       <div className="pl-4 pr-4">
-        <h2 className="font-bold text-xl">{content.title}</h2>
+        <h2 className="text-white font-bold text-xl">{content.title}</h2>
         <span className="text-green-500">{content.year}</span>
         <br />
-        <h2 className="text-lg">{content.duration}</h2>
-        <p>{content.description}</p>
+        <h2 className="text-white text-lg">{content.duration}</h2>
+        <p className="text-white">{content.description}</p>
       </div>
     </div>
   );

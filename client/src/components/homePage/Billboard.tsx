@@ -6,6 +6,8 @@ import { CiCircleInfo } from "react-icons/ci";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import MoreInfo from '../shared/MoreInfo';
+import {Dialog, DialogContent, DialogTitle} from '@material-ui/core';
+import MoreInfoDialog from '../shared/MoreInfoDialog';
 
 
 interface Props {
@@ -15,6 +17,13 @@ interface Props {
 const Billboard: React.FC<Props> = ({randomContent}) => {
   const navigate = useNavigate();
   const [isInfoBoxOpen, setisInfoBoxOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setisInfoBoxOpen(true);
+  };
+  const handleClose = () => {
+    setisInfoBoxOpen(false);
+  };
 
   return (
     <div className='relative h-[56.25vw]'>
@@ -36,11 +45,10 @@ const Billboard: React.FC<Props> = ({randomContent}) => {
       </p>
       <div className={style.buttons}>
         <button className={`${style.button} ${style.play}`} onClick={()=>navigate(`/watch?=${randomContent._id}`)}><FaPlay />Play</button>
-        <button className={`${style.button} ${style.moreInfo}`} onClick={()=> {setisInfoBoxOpen(!isInfoBoxOpen)}}><CiCircleInfo /> More Info</button>
+        <button className={`${style.button} ${style.moreInfo}`} onClick={()=> {setisInfoBoxOpen(true)}}><CiCircleInfo /> More Info</button>
       </div>
 
-  {isInfoBoxOpen? <MoreInfo content={randomContent} setisInfoBoxOpen={setisInfoBoxOpen}/>: null}
- 
+  {isInfoBoxOpen? <MoreInfoDialog content={randomContent} isOpen={handleClickOpen } onClose={handleClose}/>: null}
 </div>
 
 

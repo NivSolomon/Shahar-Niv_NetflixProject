@@ -1,9 +1,9 @@
 .cardContainer {
-  border: 5px solid rgba(128, 128, 128, 0.2); /* Grey border with opacity */
+  /* border: 5px solid rgba(128, 128, 128, 0.2); Grey border with opacity */
   border-radius: 10px;
   box-shadow: 5 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  background-color: black;
+  background-color: rgb(56, 48, 48);
    /* Increase padding to provide more space for content */
   margin-bottom: 50px;
   position: absolute;
@@ -11,7 +11,7 @@
   left: 50%; /* Center the card horizontally */
   transform: translate(-50%, -50%); 
   transition: transform 0.5s ease;
-
+  padding-bottom: ;
 }
 
 .cardContainer:hover {
