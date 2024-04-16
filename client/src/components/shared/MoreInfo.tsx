@@ -9,7 +9,6 @@ const MoreInfo = ({ content, setIsOpen  }) => {
           setIsOpen(false);
         }}
       >
-        {/* <IoCloseOutline className=" absolute border h-7 w-7 justify-self-end ml-96 rounded-md" /> */}
       </button>
       <div className="aspect-[16/9]">
         <ReactPlayer
