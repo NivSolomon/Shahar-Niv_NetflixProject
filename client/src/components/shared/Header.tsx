@@ -1,18 +1,16 @@
-import { useLocation } from 'react-router-dom';
-import Navbar from '../header/NavBar';
+import { useLocation } from "react-router-dom";
+import Navbar from "../header/NavBar";
 
 const Header = () => {
-
   // const { state, dispatch: ctxDispatch } = useContext(Store);
   const location = useLocation().pathname;
-  
 
   return (
-    <header className='header'>
-      {localStorage.getItem('userInfo') === null || location === "/watch"?
-      null:
-      <Navbar/>
-       }
+    <header className="header">
+      {localStorage.getItem("userInfo") === null ||
+      location === "/watch" ? null : (
+        <Navbar />
+      )}
       {/* <Link to={'/'}>
         <img id="Netflix-logo" src="/Netflix_logo.svg"/>
       </Link>
@@ -20,7 +18,7 @@ const Header = () => {
         signout
       </Link> */}
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
