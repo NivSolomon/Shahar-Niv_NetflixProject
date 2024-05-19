@@ -31,7 +31,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: (86,77,77);
+  /* background-color: (86,77,77); */
+  background-color: #121212;
 }
 
 #Netflix-logo {
