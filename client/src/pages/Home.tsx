@@ -8,7 +8,6 @@ import { getRandomContent } from "../services/ContentService";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  // const navigate = useNavigate(); // Redirect user to sign in 
   const contents = useSelector((state : RootState ) => state.contents.contents);
   const userInfo = useSelector((state : RootState ) => state.userAuth.userInfo);
   const [randomContent, setRandomContent] = useState();
